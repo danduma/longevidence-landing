@@ -1,0 +1,145 @@
+{
+  "hero": {
+    "trustBadge": "Trusted by 10,000+ researchers",
+    "titlePrimary": "Transform Research with AI",
+    "subtitle": "Accelerate your research workflow with intelligent automation and evidence synthesis",
+    "primaryCta": "Get Started",
+    "secondaryTitle": "Free trial • No credit card required",
+    "highlightTitle": "Realtime evidence pulse",
+    "highlightSubtitle": "Live signals from interventions with growing clinical traction.",
+    "highlightMetricsLabel": "Methodology cadence"
+  },
+  "interventions": {
+    "accent": "Solutions",
+    "title": "Featured Interventions",
+    "subtitle": "Powerful tools designed for modern research workflows",
+    "evidenceLevelLabel": "Evidence Level",
+    "safetyRatingLabel": "Safety Rating",
+    "items": {
+      "prp": {
+        "name": "Platelet-rich plasma",
+        "summary": "Autologous platelet concentrates for tissue regeneration and joint health.",
+        "evidenceLevel": "Emerging clinical consensus",
+        "safetyRating": "Moderate with expert protocols"
+      },
+      "plasmapheresis": {
+        "name": "Plasmapheresis",
+        "summary": "Extracorporeal plasma exchange investigating rejuvenation markers.",
+        "evidenceLevel": "Limited randomized data",
+        "safetyRating": "High complexity"
+      },
+      "peptides": {
+        "name": "Longevity peptides",
+        "summary": "Targeted peptide stacks modulating cellular signaling pathways.",
+        "evidenceLevel": "Mixed preclinical",
+        "safetyRating": "Requires specialist oversight"
+      },
+      "redLight": {
+        "name": "Red light therapy",
+        "summary": "Photobiomodulation for mitochondrial resilience and skin health.",
+        "evidenceLevel": "Growing human trials",
+        "safetyRating": "Generally well tolerated"
+      },
+      "hbot": {
+        "name": "Hyperbaric oxygen",
+        "summary": "Pressurized oxygen protocols for recovery and neuroplasticity.",
+        "evidenceLevel": "Strong niche studies",
+        "safetyRating": "Medical supervision needed"
+      },
+      "tert": {
+        "name": "TERT modulation",
+        "summary": "Telomerase activation strategies exploring cellular age reversal.",
+        "evidenceLevel": "Speculative early-stage",
+        "safetyRating": "Investigational only"
+      }
+    }
+  },
+  "audience": {
+    "accent": "For",
+    "title": "Built for Every Researcher",
+    "subtitle": "Tailored solutions for different research needs and workflows",
+    "items": {
+      "coaches": {
+        "name": "Performance coaches",
+        "description": "Translate research into client-ready interventions without losing nuance."
+      },
+      "clinicians": {
+        "name": "Longevity clinicians",
+        "description": "Track safety signals and mechanistic rationale before integrating protocols."
+      },
+      "nutritionists": {
+        "name": "Nutrition strategists",
+        "description": "Align nutraceutical stacks with biomarker-backed outcomes."
+      },
+      "researchers": {
+        "name": "Medical researchers",
+        "description": "Survey consolidated trial data and methodology critiques in one workspace."
+      },
+      "prosumers": {
+        "name": "Informed prosumers",
+        "description": "Understand where hype ends and validated gains begin."
+      },
+      "patients": {
+        "name": "Concerned patients",
+        "description": "Decide with your care team using transparent risk/benefit breakdowns."
+      }
+    }
+  },
+  "methodology": {
+    "accent": "Process",
+    "title": "Our Methodology",
+    "subtitle": "A systematic approach to research excellence",
+    "items": {
+      "curate": {
+        "title": "Curate the frontier",
+        "description": "Screen journals, registries, and private datasets with PhD-level analysts.",
+        "metric": "150+ sources monitored"
+      },
+      "evaluate": {
+        "title": "Evaluate rigor",
+        "description": "Grade study quality, effect sizes, and reproducibility with transparent scoring.",
+        "metric": "9-dimension rubric"
+      },
+      "monitor": {
+        "title": "Monitor outcomes",
+        "description": "Synthesize practitioner reported outcomes and adverse event logs in real time.",
+        "metric": "Live safety bulletins"
+      }
+    }
+  },
+  "carousel": {
+    "items": {
+      "prp": {
+        "title": "Platelet-rich plasma",
+        "subtitle": "Autologous platelet concentrates accelerating joint recovery",
+        "metaLabel": "Signal",
+        "metaValue": "Emerging clinical consensus"
+      },
+      "plasmapheresis": {
+        "title": "Therapeutic plasma exchange",
+        "subtitle": "Extracorporeal swaps explored for rejuvenation markers",
+        "metaLabel": "Clarity",
+        "metaValue": "Limited randomized data"
+      },
+      "peptides": {
+        "title": "Longevity peptide stacks",
+        "subtitle": "Targeted signaling modulators used in precision protocols",
+        "metaLabel": "Oversight",
+        "metaValue": "Requires specialist guidance"
+      },
+      "hbot": {
+        "title": "Hyperbaric oxygen therapy",
+        "subtitle": "Pressurized sessions tracking neuroplastic and recovery gains",
+        "metaLabel": "Momentum",
+        "metaValue": "Strong niche studies"
+      }
+    }
+  },
+  "cta": {
+    "title": "Ready to Transform Your Research?",
+    "subtitle": "Join thousands of researchers who are already using our platform",
+    "button": "Start Free Trial",
+    "socialProof": "Join 10,000+ researchers",
+    "routingNotice": "Research Platform • Academic Tools • Evidence Synthesis"
+  }
+}

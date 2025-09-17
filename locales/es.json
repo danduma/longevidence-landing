@@ -1,0 +1,145 @@
+{
+  "hero": {
+    "trustBadge": "Confiado por más de 10,000 investigadores",
+    "titlePrimary": "Transforma la Investigación con IA",
+    "subtitle": "Acelera tu flujo de trabajo de investigación con automatización inteligente y síntesis de evidencia",
+    "primaryCta": "Comenzar",
+    "secondaryTitle": "Prueba gratuita • No se requiere tarjeta de crédito",
+    "highlightTitle": "Pulso de evidencia en tiempo real",
+    "highlightSubtitle": "Señales en vivo de intervenciones con creciente tracción clínica.",
+    "highlightMetricsLabel": "Cadencia metodológica"
+  },
+  "interventions": {
+    "accent": "Soluciones",
+    "title": "Intervenciones Destacadas",
+    "subtitle": "Herramientas poderosas diseñadas para flujos de trabajo de investigación modernos",
+    "evidenceLevelLabel": "Nivel de evidencia",
+    "safetyRatingLabel": "Calificación de seguridad",
+    "items": {
+      "prp": {
+        "name": "Plasma rico en plaquetas",
+        "summary": "Concentrados autólogos de plaquetas para regeneración tisular y salud articular.",
+        "evidenceLevel": "Consenso clínico emergente",
+        "safetyRating": "Moderado con protocolos expertos"
+      },
+      "plasmapheresis": {
+        "name": "Plasmaféresis",
+        "summary": "Intercambio extracorpóreo de plasma investigando marcadores de rejuvenecimiento.",
+        "evidenceLevel": "Datos aleatorizados limitados",
+        "safetyRating": "Alta complejidad"
+      },
+      "peptides": {
+        "name": "Péptidos de longevidad",
+        "summary": "Combinaciones dirigidas de péptidos que modulan vías de señalización celular.",
+        "evidenceLevel": "Preclínico mixto",
+        "safetyRating": "Requiere supervisión especializada"
+      },
+      "redLight": {
+        "name": "Terapia de luz roja",
+        "summary": "Fotobiomodulación para resiliencia mitocondrial y salud de la piel.",
+        "evidenceLevel": "Crecientes ensayos en humanos",
+        "safetyRating": "Generalmente bien tolerada"
+      },
+      "hbot": {
+        "name": "Oxigenoterapia hiperbárica",
+        "summary": "Protocolos de oxígeno presurizado para recuperación y neuroplasticidad.",
+        "evidenceLevel": "Estudios de nicho sólidos",
+        "safetyRating": "Requiere supervisión médica"
+      },
+      "tert": {
+        "name": "Modulación de TERT",
+        "summary": "Estrategias de activación de telomerasa explorando la reversión de la edad celular.",
+        "evidenceLevel": "Etapa temprana especulativa",
+        "safetyRating": "Solo investigacional"
+      }
+    }
+  },
+  "audience": {
+    "accent": "Para",
+    "title": "Construido para Cada Investigador",
+    "subtitle": "Soluciones adaptadas para diferentes necesidades y flujos de trabajo de investigación",
+    "items": {
+      "coaches": {
+        "name": "Entrenadores de rendimiento",
+        "description": "Traduce investigación en intervenciones listas para clientes sin perder matices."
+      },
+      "clinicians": {
+        "name": "Clínicos de longevidad",
+        "description": "Sigue señales de seguridad y racional mecánico antes de integrar protocolos."
+      },
+      "nutritionists": {
+        "name": "Estrategas de nutrición",
+        "description": "Alinea combinaciones de nutracéuticos con resultados respaldados por biomarcadores."
+      },
+      "researchers": {
+        "name": "Investigadores médicos",
+        "description": "Revisa datos de ensayos y críticas metodológicas consolidados en un solo lugar."
+      },
+      "prosumers": {
+        "name": "Prosumer informados",
+        "description": "Entiende dónde termina el entusiasmo y comienzan las ganancias validadas."
+      },
+      "patients": {
+        "name": "Pacientes preocupados",
+        "description": "Decide con tu equipo médico usando desglose transparente de riesgos/beneficios."
+      }
+    }
+  },
+  "methodology": {
+    "accent": "Proceso",
+    "title": "Nuestra Metodología",
+    "subtitle": "Un enfoque sistemático para la excelencia en investigación",
+    "items": {
+      "curate": {
+        "title": "Curar la frontera",
+        "description": "Examinar revistas, registros y conjuntos de datos privados con analistas PhD.",
+        "metric": "150+ fuentes monitoreadas"
+      },
+      "evaluate": {
+        "title": "Evaluar el rigor",
+        "description": "Calificar calidad de estudios, tamaños de efecto y reproducibilidad con puntajes transparentes.",
+        "metric": "Rúbrica de 9 dimensiones"
+      },
+      "monitor": {
+        "title": "Monitorear resultados",
+        "description": "Sintetizar resultados reportados por practicantes y registros de eventos adversos en tiempo real.",
+        "metric": "Boletines de seguridad en vivo"
+      }
+    }
+  },
+  "carousel": {
+    "items": {
+      "prp": {
+        "title": "Plasma rico en plaquetas",
+        "subtitle": "Concentrados autólogos de plaquetas que aceleran la recuperación articular",
+        "metaLabel": "Señal",
+        "metaValue": "Consenso clínico emergente"
+      },
+      "plasmapheresis": {
+        "title": "Intercambio terapéutico de plasma",
+        "subtitle": "Intercambios extracorpóreos explorados para marcadores de rejuvenecimiento",
+        "metaLabel": "Claridad",
+        "metaValue": "Datos aleatorizados limitados"
+      },
+      "peptides": {
+        "title": "Combinaciones de péptidos de longevidad",
+        "subtitle": "Moduladores de señalización dirigidos usados en protocolos de precisión",
+        "metaLabel": "Supervisión",
+        "metaValue": "Requiere guía especializada"
+      },
+      "hbot": {
+        "title": "Terapia de oxígeno hiperbárico",
+        "subtitle": "Sesiones presurizadas que siguen ganancias de neuroplasticidad y recuperación",
+        "metaLabel": "Impulso",
+        "metaValue": "Estudios de nicho sólidos"
+      }
+    }
+  },
+  "cta": {
+    "title": "¿Listo para Transformar tu Investigación?",
+    "subtitle": "Únete a miles de investigadores que ya están usando nuestra plataforma",
+    "button": "Iniciar Prueba Gratuita",
+    "socialProof": "Únete a más de 10,000 investigadores",
+    "routingNotice": "Plataforma de Investigación • Herramientas Académicas • Síntesis de Evidencia"
+  }
+}

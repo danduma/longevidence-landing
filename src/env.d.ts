@@ -1,0 +1,66 @@
+/// <reference types="vite/client" />
+
+interface ImportMetaEnv {
+  readonly VITE_DOCUMENT_TITLE: string;
+  readonly VITE_FONT_API_ENDPOINT: string;
+  readonly VITE_FONT_STATIC_ENDPOINT: string;
+  readonly VITE_FONT_STYLESHEET_URL: string;
+  readonly VITE_FONT_FAMILY: string;
+  readonly VITE_BACKGROUND_RGB: string;
+  readonly VITE_SURFACE_RGB: string;
+  readonly VITE_ACCENT_RGB: string;
+  readonly VITE_MUTED_RGB: string;
+  readonly VITE_FOREGROUND_RGB: string;
+  readonly VITE_RING_RGB: string;
+  readonly VITE_SHADOW_RGB: string;
+  readonly VITE_SECTION_VERTICAL_SPACING: string;
+  readonly VITE_SECTION_MAX_WIDTH: string;
+  readonly VITE_GRID_GAP: string;
+  readonly VITE_CARD_RADIUS: string;
+  readonly VITE_BACKGROUND_GRADIENT: string;
+  readonly VITE_SURFACE_GRADIENT: string;
+  readonly VITE_ACCENT_GRADIENT: string;
+  readonly VITE_HERO_GLOW_PRIMARY: string;
+  readonly VITE_HERO_GLOW_SECONDARY: string;
+  readonly VITE_FLOAT_AMPLITUDE: string;
+  readonly VITE_FLOAT_DURATION: string;
+  readonly VITE_BACKGROUND_NOISE_OPACITY: string;
+  readonly VITE_ANIMATION_DURATION: string;
+  readonly VITE_ANIMATION_EASING: string;
+  readonly VITE_BLUR_STRENGTH: string;
+  readonly VITE_HERO_TITLE_PRIMARY: string;
+  readonly VITE_HERO_TITLE_SECONDARY: string;
+  readonly VITE_HERO_SUBTITLE: string;
+  readonly VITE_HERO_CTA: string;
+  readonly VITE_HERO_CAROUSEL_ITEMS: string;
+  readonly VITE_HERO_CAROUSEL_INTERVAL: string;
+  readonly VITE_HERO_HIGHLIGHT_TITLE: string;
+  readonly VITE_HERO_HIGHLIGHT_SUBTITLE: string;
+  readonly VITE_HERO_HIGHLIGHT_METRICS_LABEL: string;
+  readonly VITE_INTERVENTIONS_ACCENT: string;
+  readonly VITE_INTERVENTIONS_TITLE: string;
+  readonly VITE_INTERVENTIONS_SUBTITLE: string;
+  readonly VITE_INTERVENTIONS_EVIDENCE_LABEL: string;
+  readonly VITE_INTERVENTIONS_SAFETY_LABEL: string;
+  readonly VITE_AUDIENCE_TITLE: string;
+  readonly VITE_AUDIENCE_SUBTITLE: string;
+  readonly VITE_METHODOLOGY_ACCENT: string;
+  readonly VITE_METHODOLOGY_TITLE: string;
+  readonly VITE_METHODOLOGY_SUBTITLE: string;
+  readonly VITE_FEATURED_INTERVENTIONS: string;
+  readonly VITE_AUDIENCE_SEGMENTS: string;
+  readonly VITE_METHODOLOGY_STEPS: string;
+  readonly VITE_CTA_HEADLINE: string;
+  readonly VITE_CTA_SUBHEAD: string;
+  readonly VITE_CTA_BUTTON: string;
+  readonly VITE_SOCIAL_PROOF: string;
+  readonly VITE_ROUTING_PRIMARY_DOMAIN: string;
+  readonly VITE_ROUTING_APP_DOMAIN: string;
+  readonly VITE_ROUTING_ALT_DOMAIN: string;
+  readonly VITE_ROUTING_TARGET_DOMAIN: string;
+  readonly VITE_TRUST_BADGE_LABEL: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
