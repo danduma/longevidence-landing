@@ -11,7 +11,7 @@
   },
   "include": [
     "./src",
-    "../shared/locales/**/*.json"
+    "./locales/**/*.json"
   ],
   "exclude": [
     "./node_modules"

@@ -5,7 +5,6 @@ import App from './App';
 import './index.css';
 import './i18n';
 import { DesignTokenManager } from './managers/DesignTokenManager';
-import './managers/LocalizationManager';
 
 DesignTokenManager.getTokens();
 

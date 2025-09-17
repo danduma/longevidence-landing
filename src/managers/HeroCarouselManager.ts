@@ -23,7 +23,7 @@ class HeroCarouselManagerClass extends BaseManager {
       { id: 'peptides', title: 'Longevity peptide stacks', subtitle: 'Targeted signaling modulators used in precision protocols', metaLabel: 'Oversight', metaValue: 'Requires specialist guidance', icon: 'Activity' },
       { id: 'hbot', title: 'Hyperbaric oxygen therapy', subtitle: 'Pressurized sessions tracking neuroplastic and recovery gains', metaLabel: 'Momentum', metaValue: 'Strong niche studies', icon: 'Waveform' }
     ];
-    this.intervalMs = 4000;
+    this.intervalMs = Number(import.meta.env.VITE_HERO_CAROUSEL_INTERVAL);
   }
 
   start(): void {

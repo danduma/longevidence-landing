@@ -45,17 +45,17 @@ export const HeroSection: React.FC = () => {
             {t('hero.trustBadge', {}, 'Trusted by clinicians and researchers')}
           </span>
           <div className="vertical-stack gap-6">
-            <h1
-              ref={titleReveal.ref}
-              className={`hero-title text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl ${titleReveal.visible ? 'is-visible' : ''}`}
-            >
-              {t('hero.titlePrimary', {}, 'Turn longevity evidence into action')}
+          <h1
+          ref={titleReveal.ref}
+          className={`hero-title text-4xl font-bold leading-tight tracking-tight text-white [text-shadow:2px_2px_5px_#000] sm:text-5xl lg:text-6xl ${titleReveal.visible ? 'is-visible' : ''}`}
+        >
+              {t('hero.titlePrimary', {}, 'Find out what actually works')}
             </h1>
             <p
               ref={subtitleReveal.ref}
               className={`hero-subtitle text-lg text-foreground/80 sm:text-xl ${subtitleReveal.visible ? 'is-visible' : ''}`}
             >
-              {t('hero.subtitle', {}, 'Track emerging interventions with real clinical traction and guidance.')}
+              {t('hero.subtitle', {}, 'Evidence-based reviews, curated by experts, updated daily')}
             </p>
           </div>
           <div
