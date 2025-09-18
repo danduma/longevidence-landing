@@ -4,9 +4,6 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
 import './i18n';
-import { DesignTokenManager } from './managers/DesignTokenManager';
-
-DesignTokenManager.getTokens();
 
 const rootElement = document.getElementById('root');
 

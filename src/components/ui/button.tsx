@@ -11,7 +11,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 const variantClassMap: Record<ButtonVariant, string> = {
   primary:
-    'gradient-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 focus-visible:ring-accent/70',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 focus-visible:ring-accent/70',
   ghost:
     'bg-transparent text-foreground border border-transparent hover:border-accent/40 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 focus-visible:ring-accent/50'
 };
@@ -22,7 +22,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ asChild = fa
     <Comp
       ref={ref}
       className={twMerge(
-        'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] transition-transform duration-300 ease-out hover:-translate-y-0.5',
+        'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold tracking-wide transition-transform duration-300 ease-out',
         variantClassMap[variant],
         className
       )}

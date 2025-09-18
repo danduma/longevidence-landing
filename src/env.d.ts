@@ -28,6 +28,9 @@ interface ImportMetaEnv {
   readonly VITE_ANIMATION_DURATION: string;
   readonly VITE_ANIMATION_EASING: string;
   readonly VITE_BLUR_STRENGTH: string;
+  readonly VITE_HERO_TITLE_UNDERLINE_COLOR: string;
+  readonly VITE_HERO_TITLE_HIGHLIGHT_START: string;
+  readonly VITE_HERO_TITLE_HIGHLIGHT_END: string;
   readonly VITE_HERO_TITLE_PRIMARY: string;
   readonly VITE_HERO_TITLE_SECONDARY: string;
   readonly VITE_HERO_SUBTITLE: string;

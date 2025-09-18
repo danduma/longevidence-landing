@@ -24,9 +24,12 @@
   --float-amplitude: 16px;
   --float-duration: 12s;
   --background-noise-opacity: 0.05;
-  --hero-title-underline-color: rgba(229, 57, 53, 0.9);
-  --hero-title-highlight-start-color: rgba(255, 214, 102, 0.85);
-  --hero-title-highlight-end-color: rgba(255, 174, 72, 0.88);
+  --hero-title-underline-color: rgba(255, 174, 72, 0.88);
+  /* Underline tuning */
+  --hero-title-underline-height: 0.14em;
+  /* Smaller percentage moves the line higher within the text line box */
+  --hero-title-underline-position: 84%;
+  --hero-title-highlight-color: rgba(255, 64, 0, 0.88);
 }
 
 body {
@@ -52,6 +55,12 @@ body::after {
   position: relative;
   padding-top: var(--section-vertical-spacing);
   padding-bottom: var(--section-vertical-spacing);
+}
+
+/* Tighten spacing for all non-hero sections */
+.section-shell:not(.hero-section) {
+  padding-top: calc(var(--section-vertical-spacing) * 0.33);
+  padding-bottom: calc(var(--section-vertical-spacing) * 0.33);
 }
 
 .section-container {
@@ -337,59 +346,39 @@ body::after {
 }
 
 .hero-title__underline {
-  padding-bottom: 0.12em;
-  background-image:
-    linear-gradient(180deg, transparent 64%, var(--hero-title-underline-color) 64%, transparent 74%),
-    linear-gradient(180deg, transparent 78%, var(--hero-title-underline-color) 78%, transparent 88%);
-  background-size: 100% 100%;
+  /* Draw an underline using a background stripe so we can position it higher */
+  background-image: linear-gradient(
+    to bottom,
+    var(--hero-title-underline-color) 0,
+    var(--hero-title-underline-color) var(--hero-title-underline-height),
+    transparent var(--hero-title-underline-height)
+  );
   background-repeat: no-repeat;
-  background-position: 0 100%;
+  background-size: 100% var(--hero-title-underline-height);
+  background-position: 0 var(--hero-title-underline-position);
 }
 
-.hero-title__underline::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.05em;
-  height: 0.18em;
-  background: radial-gradient(circle at 15% 45%, rgba(0, 0, 0, 0.14) 0, transparent 60%), radial-gradient(circle at 70% 55%, rgba(0, 0, 0, 0.1) 0, transparent 70%);
-  opacity: 0.45;
-  pointer-events: none;
+
+/* Utility: background block for hero highlight */
+.bg-highlight {
+  background-image: linear-gradient(120deg, var(--hero-title-highlight-color), var(--hero-title-highlight-color));
+  /* border-radius: 8px; */
+  transform-origin: center;
+  z-index: 0;
+  height: 110%;
+  box-shadow: 0 16px 36px -20px rgba(var(--color-shadow-rgb), 0.35);
 }
 
-.hero-title__highlight {
-  margin-inline: -0.08em;
-  padding-inline: 0.28em;
-  background-image: linear-gradient(180deg, var(--hero-title-highlight-start-color) 0%, var(--hero-title-highlight-end-color) 85%, transparent 100%);
-  background-size: 100% 82%;
-  background-position: 0 78%;
-  background-repeat: no-repeat;
-  filter: saturate(105%);
+/* Ensure highlighted segments allow absolute children to layer underneath text */
+.hero-title__segment.hero-title__highlight {
+  display: inline-block;
 }
 
-.hero-title__highlight::after {
-  content: '';
-  position: absolute;
-  inset: 15% -0.25em auto -0.25em;
-  height: 55%;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.18), transparent 55%, rgba(0, 0, 0, 0.05) 90%);
-  mix-blend-mode: soft-light;
-  opacity: 0.55;
-  pointer-events: none;
+.hero-title__segment .relative {
+  position: relative;
+  z-index: 1;
 }
 
-@supports (background-image: linear-gradient(180deg, transparent 60%, color-mix(in srgb, red 80%, transparent) 60%, transparent 70%)) {
-  .hero-title__underline {
-    background-image:
-      linear-gradient(180deg, transparent 64%, color-mix(in srgb, var(--hero-title-underline-color) 88%, transparent) 64%, transparent 74%),
-      linear-gradient(180deg, transparent 78%, color-mix(in srgb, var(--hero-title-underline-color) 70%, transparent) 78%, transparent 88%);
-  }
-
-  .hero-title__highlight {
-    background-image: linear-gradient(180deg, color-mix(in srgb, var(--hero-title-highlight-start-color) 92%, transparent) 0%, color-mix(in srgb, var(--hero-title-highlight-end-color) 85%, transparent) 85%, transparent 100%);
-  }
-}
 
 .hero-subtitle {
   opacity: 0;
@@ -554,6 +543,60 @@ body::after {
 .gradient-button:hover::after {
   opacity: 1;
 }
+
+/* Hero CTA: make it pop significantly more while staying elegant */
+.hero-cta-button {
+  position: relative;
+  isolation: isolate;
+  color: white;
+  background-image: var(--accent-gradient);
+  border: 4px solid rgb(var(--color-surface-rgb));
+  /* Larger typography by default */
+  font-size: clamp(1.06rem, 0.98rem + 0.35vw, 1.24rem);
+  line-height: 1.15;
+  /* Crisp, opaque silhouette shadow outside the button (exact shape) */
+  filter: drop-shadow(0 8px 0 rgb(var(--color-shadow-rgb))) drop-shadow(0 18px 18px rgba(var(--color-shadow-rgb), 0.22));
+  transition: transform 320ms var(--animation-easing), filter 200ms ease, background-image 240ms ease;
+}
+
+.hero-cta-button:hover {
+  transform: translateY(-8px);
+  /* Keep accent palette but brighten slightly */
+  background-image: var(--accent-gradient);
+  /* Push shadow further DOWN as the button lifts */
+  filter: drop-shadow(0 22px 0 rgb(var(--color-shadow-rgb))) drop-shadow(0 30px 26px rgba(var(--color-shadow-rgb), 0.28)) saturate(1.25) brightness(1.12);
+}
+
+.hero-cta-button:active {
+  transform: translateY(-2px);
+}
+
+/* Stationary black shadow that stays as the button lifts */
+/* Dedicated shadow element to guarantee visibility on all browsers */
+.hero-cta-button::after {
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -12px;
+  height: 18px;
+  border-radius: 999px;
+  background: rgba(var(--color-shadow-rgb), 1);
+  filter: blur(12px);
+  opacity: 0.42;
+  transform: translateY(0);
+  transition: transform 320ms var(--animation-easing), opacity 200ms ease;
+}
+
+.hero-cta-button:hover::after {
+  /* Move the shadow further DOWN while the button moves UP */
+  transform: translateY(18px);
+  opacity: 0.6;
+}
+
+/* No hover pseudo-element needed */
+
+/* (Consolidated hover rule above) */
 
 .section-outline-card {
   border-radius: calc(var(--card-radius) - 6px);

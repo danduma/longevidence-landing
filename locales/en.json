@@ -1,11 +1,15 @@
 {
   "hero": {
     "trustBadge": "Trusted by clinicians and researchers",
-    "titlePrimary": "Find out what actually works",
-    "subtitle": "Evidence-based reviews of all longevity interventions, curated by experts, updated daily",
-    "primaryCta": "Get Started",
+    "titlePrimary": "Find out what actually works in longevity",
+    "titleDecorations": {
+      "underlineTargets": ["what actually works"],
+      "highlightTargets": ["longevity"]
+    },
+    "subtitle": "Evidence-based reviews of the latest longevity interventions, written by AI, curated by experts, updated daily",
+    "primaryCta": "Start exploring",
     "secondaryTitle": "Free trial • No credit card required",
-    "highlightTitle": "Realtime evidence pulse",
+    "highlightTitle": "Frontier longevity interventions",
     "highlightSubtitle": "Live signals from interventions with growing clinical traction.",
     "highlightMetricsLabel": "Methodology cadence"
   },
@@ -140,6 +144,6 @@
     "subtitle": "Join thousands of researchers who are already using our platform",
     "button": "Start Free Trial",
     "socialProof": "Join 10,000+ researchers",
-    "routingNotice": "Research Platform • Academic Tools • Evidence Synthesis"
+    "routingNotice": ""
   }
 }
