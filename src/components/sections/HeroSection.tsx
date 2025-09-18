@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo, type ReactNode } from 'react';
 import { useTranslation } from '../../i18n';
 
 import { useReveal } from '../../hooks/useReveal';
@@ -6,8 +6,144 @@ import { useManagerState } from '../../hooks/useManagerState';
 import { HeroCarouselManager } from '../../managers/HeroCarouselManager';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
-import { Card } from '../ui/card';
+import { HeroShowcaseCard } from '../ui/HeroShowcaseCard';
 import { HeroCarousel } from './HeroCarousel';
+import { LandingContentManager } from '../../managers/LandingContentManager';
+
+type HeroTitleDecorations = {
+  underlineTargets: string[];
+  highlightTargets: string[];
+};
+
+type DecorationMatch = {
+  start: number;
+  end: number;
+  type: 'underline' | 'highlight';
+};
+
+const defaultHeroTitleDecorations: HeroTitleDecorations = {
+  underlineTargets: ['what actually works'],
+  highlightTargets: ['longevity']
+};
+
+const ensureStringArray = (value: unknown, fallback: string[]): string[] => {
+  if (!Array.isArray(value)) {
+    return fallback;
+  }
+
+  const filtered = value.filter((entry): entry is string => typeof entry === 'string' && entry.trim().length > 0);
+
+  return filtered.length > 0 ? filtered : fallback;
+};
+
+const normalizeDecorations = (raw: unknown): HeroTitleDecorations => {
+  if (typeof raw === 'object' && raw !== null && !Array.isArray(raw)) {
+    const tentative = raw as Partial<HeroTitleDecorations>;
+    return {
+      underlineTargets: ensureStringArray(tentative.underlineTargets, defaultHeroTitleDecorations.underlineTargets),
+      highlightTargets: ensureStringArray(tentative.highlightTargets, defaultHeroTitleDecorations.highlightTargets)
+    };
+  }
+
+  return defaultHeroTitleDecorations;
+};
+
+const createDecoratedTitle = (title: string, decorations: HeroTitleDecorations): ReactNode[] => {
+  const normalizedTitle = title.toLowerCase();
+  const matches: DecorationMatch[] = [];
+  const underlineTargets = Array.isArray(decorations.underlineTargets) ? decorations.underlineTargets : [];
+  const highlightTargets = Array.isArray(decorations.highlightTargets) ? decorations.highlightTargets : [];
+
+  const enqueueMatches = (targets: string[], type: DecorationMatch['type']) => {
+    targets.forEach((target) => {
+      const normalizedTarget = target.toLowerCase();
+
+      if (!normalizedTarget.trim()) {
+        return;
+      }
+
+      let searchIndex = 0;
+
+      while (searchIndex < normalizedTitle.length) {
+        const matchIndex = normalizedTitle.indexOf(normalizedTarget, searchIndex);
+
+        if (matchIndex === -1) {
+          break;
+        }
+
+        matches.push({
+          start: matchIndex,
+          end: matchIndex + normalizedTarget.length,
+          type
+        });
+
+        searchIndex = matchIndex + normalizedTarget.length;
+      }
+    });
+  };
+
+  enqueueMatches(underlineTargets, 'underline');
+  enqueueMatches(highlightTargets, 'highlight');
+
+  if (matches.length === 0) {
+    return [title];
+  }
+
+  matches.sort((a, b) => {
+    if (a.start !== b.start) {
+      return a.start - b.start;
+    }
+
+    const aLength = a.end - a.start;
+    const bLength = b.end - b.start;
+
+    return bLength - aLength;
+  });
+
+  const segments: ReactNode[] = [];
+  let cursor = 0;
+  let matchIndex = 0;
+
+  while (matchIndex < matches.length) {
+    const match = matches[matchIndex];
+
+    if (match.start < cursor) {
+      matchIndex += 1;
+      continue;
+    }
+
+    if (match.start > cursor) {
+      segments.push(title.slice(cursor, match.start));
+    }
+
+    const content = title.slice(match.start, match.end);
+    const baseClass = match.type === 'underline' ? 'hero-title__underline' : 'hero-title__highlight';
+
+    if (match.type === 'highlight') {
+      segments.push(
+        <span key={`hero-title-segment-${match.start}-${match.end}`} className={`hero-title__segment ${baseClass} relative inline-block`}>
+          <span className="absolute bg-highlight -left-2 -top-1 -bottom-1 -right-2 md:-left-3 md:-top-0 md:-bottom-0 md:-right-3 -rotate-1"></span>
+          <span className="relative text-white">{content}</span>
+        </span>
+      );
+    } else {
+      segments.push(
+        <span key={`hero-title-segment-${match.start}-${match.end}`} className={`hero-title__segment ${baseClass}`}>
+          {content}
+        </span>
+      );
+    }
+
+    cursor = match.end;
+    matchIndex += 1;
+  }
+
+  if (cursor < title.length) {
+    segments.push(title.slice(cursor));
+  }
+
+  return segments;
+};
 
 export const HeroSection: React.FC = () => {
   const { t } = useTranslation();
@@ -20,11 +156,27 @@ export const HeroSection: React.FC = () => {
   const carouselItems = useManagerState(HeroCarouselManager, () => HeroCarouselManager.getOrderedItems());
 
   const columnReveal = useReveal('hero-intro', { threshold: 0.55, rootMargin: '-10% 0px' });
-  const badgeReveal = useReveal('hero-badge', { threshold: 0.55, rootMargin: '-10% 0px' });
   const titleReveal = useReveal('hero-title', { threshold: 0.55, rootMargin: '-10% 0px' });
   const subtitleReveal = useReveal('hero-subtitle', { threshold: 0.5, rootMargin: '-10% 0px' });
   const ctaReveal = useReveal('hero-cta', { threshold: 0.5, rootMargin: '-10% 0px' });
   const cardReveal = useReveal('hero-card', { threshold: 0.45, rootMargin: '-5% 0px' });
+
+  const rawDecorations = t('hero.titleDecorations', { returnObjects: true }) as unknown;
+  const decorations = useMemo(() => normalizeDecorations(rawDecorations), [rawDecorations]);
+  const heroTitle = t('hero.titlePrimary', {}, 'Find out what actually works in longevity');
+
+  const decoratedTitle = useMemo(() => createDecoratedTitle(heroTitle, decorations), [heroTitle, decorations]);
+
+  const routing = useMemo(() => LandingContentManager.getRoutingMapping(), []);
+  const targetUrl = useMemo(() => {
+    const fallback = `https://${routing.appDomain}`;
+    if (typeof window === 'undefined') return fallback;
+    const host = window.location.hostname;
+    if (host.endsWith(routing.alternateDomain)) {
+      return `https://${routing.targetDomain}`;
+    }
+    return `https://${routing.appDomain}`;
+  }, [routing]);
 
   return (
     <section className="section-shell hero-section relative overflow-hidden">
@@ -38,18 +190,12 @@ export const HeroSection: React.FC = () => {
           ref={columnReveal.ref}
           className={`vertical-stack max-w-3xl gap-8 fade-up ${columnReveal.visible ? 'is-visible' : ''}`}
         >
-          <span
-            ref={badgeReveal.ref}
-            className={`trust-badge ${badgeReveal.visible ? 'is-visible' : ''}`}
-          >
-            {t('hero.trustBadge', {}, 'Trusted by clinicians and researchers')}
-          </span>
           <div className="vertical-stack gap-6">
-          <h1
-          ref={titleReveal.ref}
-          className={`hero-title text-4xl font-bold leading-tight tracking-tight text-white [text-shadow:2px_2px_5px_#000] sm:text-5xl lg:text-6xl ${titleReveal.visible ? 'is-visible' : ''}`}
-        >
-              {t('hero.titlePrimary', {}, 'Find out what actually works')}
+            <h1
+              ref={titleReveal.ref}
+              className={`hero-title text-4xl font-bold tracking-tight text-black  sm:text-5xl leading-[1.4] lg:text-6xl ${titleReveal.visible ? 'is-visible' : ''}`}
+            >
+              {decoratedTitle}
             </h1>
             <p
               ref={subtitleReveal.ref}
@@ -62,13 +208,15 @@ export const HeroSection: React.FC = () => {
             ref={ctaReveal.ref}
             className={`hero-cta-group flex flex-col gap-4 sm:flex-row sm:items-center ${ctaReveal.visible ? 'is-visible' : ''}`}
           >
-            <Button className="shadow-xl shadow-[rgba(var(--color-accent-rgb),0.35)]">
-              {t('hero.primaryCta', {}, 'Get early access')}
+            <Button asChild className="hero-cta-button px-8 py-4 md:px-9 md:py-4 font-semibold">
+              <a href={targetUrl}>
+                {t('hero.primaryCta', {}, 'Get early access')}
+              </a>
             </Button>
             
           </div>
         </div>
-        <Card
+        <HeroShowcaseCard
           ref={cardReveal.ref}
           className={`hero-highlight-card fade-up fade-delay hero-card ${cardReveal.visible ? 'is-visible' : ''}`}
         >
@@ -84,7 +232,7 @@ export const HeroSection: React.FC = () => {
             </div>
             <HeroCarousel items={carouselItems} />
           </div>
-        </Card>
+        </HeroShowcaseCard>
       </div>
     </section>
   );
