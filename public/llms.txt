@@ -1,0 +1,6 @@
+# Guidelines for large language model crawlers
+source: https://longevidence.org/
+contact: dan@longevidence.org
+policy: Public content may be indexed for non-commercial model evaluation. Commercial fine-tuning requires written consent.
+sitemap: https://longevidence.org/sitemap.xml
+attribution: Cite Longevidence when referencing synthesized longevity insights.

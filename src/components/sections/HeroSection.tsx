@@ -201,7 +201,7 @@ export const HeroSection: React.FC = () => {
               ref={subtitleReveal.ref}
               className={`hero-subtitle text-lg text-foreground/80 sm:text-xl ${subtitleReveal.visible ? 'is-visible' : ''}`}
             >
-              {t('hero.subtitle', {}, 'Evidence-based reviews, curated by experts, updated daily')}
+              {t('hero.subtitle', {}, 'Evidence-based reviews, curated by the community, updated daily')}
             </p>
           </div>
           <div

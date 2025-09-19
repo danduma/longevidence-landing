@@ -362,10 +362,10 @@ body::after {
 /* Utility: background block for hero highlight */
 .bg-highlight {
   background-image: linear-gradient(120deg, var(--hero-title-highlight-color), var(--hero-title-highlight-color));
-  /* border-radius: 8px; */
   transform-origin: center;
   z-index: 0;
   height: 110%;
+  margin-top: 3px;
   box-shadow: 0 16px 36px -20px rgba(var(--color-shadow-rgb), 0.35);
 }
 
@@ -383,6 +383,7 @@ body::after {
 .hero-subtitle {
   opacity: 0;
   transform: translateY(26px);
+  max-width: 400px;
 }
 
 .hero-subtitle.is-visible {

@@ -1,0 +1,5 @@
+# Longevidence robots directives
+User-agent: *
+Allow: /
+
+Sitemap: https://longevidence.org/sitemap.xml
