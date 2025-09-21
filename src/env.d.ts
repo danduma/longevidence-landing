@@ -57,11 +57,19 @@ interface ImportMetaEnv {
   readonly VITE_CTA_SUBHEAD: string;
   readonly VITE_CTA_BUTTON: string;
   readonly VITE_SOCIAL_PROOF: string;
+  readonly VITE_SITE_NAME: string;
+  readonly VITE_SITE_TWITTER_HANDLE: string;
   readonly VITE_ROUTING_PRIMARY_DOMAIN: string;
   readonly VITE_ROUTING_APP_DOMAIN: string;
   readonly VITE_ROUTING_ALT_DOMAIN: string;
   readonly VITE_ROUTING_TARGET_DOMAIN: string;
   readonly VITE_TRUST_BADGE_LABEL: string;
+  readonly VITE_SOCIAL_TWITTER_URL: string;
+  readonly VITE_SOCIAL_LINKEDIN_URL: string;
+  readonly VITE_SOCIAL_INSTAGRAM_URL: string;
+  readonly VITE_SOCIAL_YOUTUBE_URL: string;
+  readonly VITE_SOCIAL_SUBSTACK_URL: string;
+  readonly VITE_SOCIAL_REDDIT_URL: string;
 }
 
 interface ImportMeta {

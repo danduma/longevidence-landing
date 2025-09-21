@@ -5,10 +5,9 @@ import { useReveal } from '../../hooks/useReveal';
 import { useManagerState } from '../../hooks/useManagerState';
 import { HeroCarouselManager } from '../../managers/HeroCarouselManager';
 import { Badge } from '../ui/badge';
-import { Button } from '../ui/button';
 import { HeroShowcaseCard } from '../ui/HeroShowcaseCard';
 import { HeroCarousel } from './HeroCarousel';
-import { LandingContentManager } from '../../managers/LandingContentManager';
+import { PrimaryCtaButton } from '../ui/PrimaryCtaButton';
 
 type HeroTitleDecorations = {
   underlineTargets: string[];
@@ -167,17 +166,6 @@ export const HeroSection: React.FC = () => {
 
   const decoratedTitle = useMemo(() => createDecoratedTitle(heroTitle, decorations), [heroTitle, decorations]);
 
-  const routing = useMemo(() => LandingContentManager.getRoutingMapping(), []);
-  const targetUrl = useMemo(() => {
-    const fallback = `https://${routing.appDomain}`;
-    if (typeof window === 'undefined') return fallback;
-    const host = window.location.hostname;
-    if (host.endsWith(routing.alternateDomain)) {
-      return `https://${routing.targetDomain}`;
-    }
-    return `https://${routing.appDomain}`;
-  }, [routing]);
-
   return (
     <section className="section-shell hero-section relative overflow-hidden">
       <div className="hero-ambient" aria-hidden>
@@ -185,7 +173,12 @@ export const HeroSection: React.FC = () => {
         <div className="hero-orb hero-orb--primary" />
         <div className="hero-orb hero-orb--secondary" />
       </div>
-      <div className="section-container relative z-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:items-center">
+      <div className="section-container relative z-10">
+        <a href="/" className="hero-brand" aria-label="Longevidence home">
+          <img src="/longevidence_logo.png" alt="" className="hero-brand__logo" />
+          <span className="hero-brand__text">Longevidence</span>
+        </a>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:items-center">
         <div
           ref={columnReveal.ref}
           className={`vertical-stack max-w-3xl gap-8 fade-up ${columnReveal.visible ? 'is-visible' : ''}`}
@@ -205,14 +198,13 @@ export const HeroSection: React.FC = () => {
             </p>
           </div>
           <div
-            ref={ctaReveal.ref}
-            className={`hero-cta-group flex flex-col gap-4 sm:flex-row sm:items-center ${ctaReveal.visible ? 'is-visible' : ''}`}
-          >
-            <Button asChild className="hero-cta-button px-8 py-4 md:px-9 md:py-4 font-semibold">
-              <a href={targetUrl}>
-                {t('hero.primaryCta', {}, 'Get early access')}
-              </a>
-            </Button>
+          ref={ctaReveal.ref}
+          className={`hero-cta-group flex flex-col gap-4 sm:flex-row sm:items-center ${ctaReveal.visible ? 'is-visible' : ''}`}
+        >
+            <PrimaryCtaButton
+              label={t('hero.primaryCta', {}, 'Get early access')}
+              className="px-8 py-4 md:px-9 md:py-4 font-semibold"
+            />
             
           </div>
         </div>
@@ -233,6 +225,7 @@ export const HeroSection: React.FC = () => {
             <HeroCarousel items={carouselItems} />
           </div>
         </HeroShowcaseCard>
+        </div>
       </div>
     </section>
   );

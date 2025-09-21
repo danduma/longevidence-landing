@@ -26,7 +26,7 @@ export const FeaturedInterventionsSection: React.FC<FeaturedInterventionsSection
 
   return (
     <section className="section-shell surface-accent overflow-hidden">
-      <div className="section-container vertical-stack gap-12">
+      <div className="section-container vertical-stack gap-1">
         <div
           ref={headingReveal.ref}
           className={`vertical-stack gap-4 fade-up ${headingReveal.visible ? 'is-visible' : ''}`}
@@ -64,7 +64,7 @@ export const FeaturedInterventionsSection: React.FC<FeaturedInterventionsSection
                           <IconComponent className="h-6 w-6" />
                         </span>
                         <div className="vertical-stack gap-1">
-                          <h3 className="text-xl font-semibold text-foreground">
+                          <h3 className="text-xl font-semibold text-accent">
                             {t(`interventions.items.${intervention.id}.name`, {}, intervention.name)}
                           </h3>
                           <p className="text-sm text-muted/90">

@@ -1,10 +1,10 @@
 :root {
   --color-background-rgb: 255 255 255;
   --color-surface-rgb: 255 255 255;
-  --color-accent-rgb: 255 132 80;
+  --color-accent-rgb: 255 64 0;
   --color-muted-rgb: 112 120 134;
   --color-foreground-rgb: 17 24 39;
-  --color-ring-rgb: 255 181 130;
+  --color-ring-rgb: 255 174 72;
   --color-shadow-rgb: 17 24 39;
   --font-sans: 'Inter', sans-serif;
   --section-vertical-spacing: 7rem;
@@ -16,7 +16,7 @@
   --blur-strength: 26px;
   --background-gradient: radial-gradient(180% 180% at 10% 12%, rgba(255, 255, 255, 1), rgba(243, 248, 255, 0.96));
   --surface-gradient: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 246, 237, 0.85));
-  --accent-gradient: linear-gradient(120deg, rgba(255, 132, 80, 1), rgba(255, 107, 53, 1));
+  --accent-gradient: linear-gradient(120deg, rgba(255, 132, 80, 1), rgba(255, 64, 0, 1));
   --hero-glow-primary: rgba(214, 236, 255, 0.5);
   --hero-glow-secondary: rgba(255, 255, 255, 0.85);
   --hero-background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(168, 85, 247, 0.06), rgba(34, 197, 94, 0.06));
@@ -24,12 +24,12 @@
   --float-amplitude: 16px;
   --float-duration: 12s;
   --background-noise-opacity: 0.05;
-  --hero-title-underline-color: rgba(255, 174, 72, 0.88);
+  --hero-title-underline-color: #ffae48e0;
   /* Underline tuning */
   --hero-title-underline-height: 0.14em;
   /* Smaller percentage moves the line higher within the text line box */
   --hero-title-underline-position: 84%;
-  --hero-title-highlight-color: rgba(255, 64, 0, 0.88);
+  --hero-title-highlight-color: #ff4000e0;
 }
 
 body {
@@ -176,6 +176,37 @@ body::after {
   background: radial-gradient(circle at 25% 20%, var(--hero-glow-secondary), transparent 65%), radial-gradient(circle at 80% 10%, var(--hero-glow-primary), transparent 55%);
   filter: blur(42px);
   opacity: 0.65;
+}
+
+/* Hero brand mark */
+.hero-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  padding: 0px 0px;
+  /* border-radius: 999px; */
+  /* background: rgba(var(--color-surface-rgb), 0.75); */
+  /* border: 1px solid rgba(var(--color-ring-rgb), 0.35); */
+  /* backdrop-filter: blur(10px); */
+  align-self: start;
+  margin-top: 0px;
+  margin-bottom: 18px;
+}
+
+.hero-brand__logo {
+  width: 50px;
+  height: 50px;
+  display: block;
+  filter: brightness(0) invert(1);
+  /* Ensures the image is rendered as a white mask */
+}
+
+.hero-brand__text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: rgb(var(--color-background-rgb));
 }
 
 .hero-orb {
@@ -546,64 +577,94 @@ body::after {
 }
 
 /* Hero CTA: make it pop significantly more while staying elegant */
+.hero-cta-shadow-wrapper {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+  align-self: flex-start;
+  width: fit-content;
+}
+
+.hero-cta-shadow-wrapper::before {
+  content: '';
+  position: absolute;
+  /* Match button pill radius; avoid overflow artifacts on small screens */
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 9999px;
+  background: rgb(0, 0, 0);
+  transform: translate(6px, 6px);
+  pointer-events: none;
+  z-index: -1;
+  will-change: transform;
+  transition: transform 280ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
 .hero-cta-button {
   position: relative;
   isolation: isolate;
   color: white;
   background-image: var(--accent-gradient);
   border: 4px solid rgb(var(--color-surface-rgb));
-  /* Larger typography by default */
   font-size: clamp(1.06rem, 0.98rem + 0.35vw, 1.24rem);
   line-height: 1.15;
-  /* Crisp, opaque silhouette shadow outside the button (exact shape) */
-  filter: drop-shadow(0 8px 0 rgb(var(--color-shadow-rgb))) drop-shadow(0 18px 18px rgba(var(--color-shadow-rgb), 0.22));
-  transition: transform 320ms var(--animation-easing), filter 200ms ease, background-image 240ms ease;
+  filter: brightness(1) saturate(1);
+  will-change: transform, filter;
+  transition: transform 280ms cubic-bezier(0.4, 0.0, 0.2, 1), filter 280ms cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
-.hero-cta-button:hover {
-  transform: translateY(-8px);
-  /* Keep accent palette but brighten slightly */
-  background-image: var(--accent-gradient);
-  /* Push shadow further DOWN as the button lifts */
-  filter: drop-shadow(0 22px 0 rgb(var(--color-shadow-rgb))) drop-shadow(0 30px 26px rgba(var(--color-shadow-rgb), 0.28)) saturate(1.25) brightness(1.12);
+.hero-cta-shadow-wrapper:hover .hero-cta-button {
+  transform: translateY(-6px);
+  filter: brightness(1.08) saturate(1.05);
 }
 
-.hero-cta-button:active {
-  transform: translateY(-2px);
+.hero-cta-shadow-wrapper:hover::before {
+  transform: translate(11px, 11px);
 }
 
-/* Stationary black shadow that stays as the button lifts */
-/* Dedicated shadow element to guarantee visibility on all browsers */
-.hero-cta-button::after {
-  content: '';
-  position: absolute;
-  left: 8%;
-  right: 8%;
-  bottom: -12px;
-  height: 18px;
-  border-radius: 999px;
-  background: rgba(var(--color-shadow-rgb), 1);
-  filter: blur(12px);
-  opacity: 0.42;
-  transform: translateY(0);
-  transition: transform 320ms var(--animation-easing), opacity 200ms ease;
+.hero-cta-shadow-wrapper:active .hero-cta-button {
+  transform: translateY(-1px);
+  filter: brightness(0.98) saturate(1);
+  transition: transform 120ms cubic-bezier(0.4, 0.0, 0.2, 1), filter 120ms cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
-.hero-cta-button:hover::after {
-  /* Move the shadow further DOWN while the button moves UP */
-  transform: translateY(18px);
-  opacity: 0.6;
+.hero-cta-shadow-wrapper:active::before {
+  transform: translate(8px, 8px);
+  transition: transform 120ms cubic-bezier(0.4, 0.0, 0.2, 1);
 }
-
-/* No hover pseudo-element needed */
-
-/* (Consolidated hover rule above) */
 
 .section-outline-card {
-  border-radius: calc(var(--card-radius) - 6px);
-  border: 1px solid rgba(var(--color-ring-rgb), 0.25);
-  background: rgba(var(--color-surface-rgb), 0.65);
-  backdrop-filter: blur(18px);
+  border-radius: calc(var(--card-radius) - 6px) !important;
+  border: 1px solid rgba(var(--color-ring-rgb), 0.25) !important;
+  background: rgba(var(--color-surface-rgb), 0.65) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+  transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.section-outline-card:hover {
+  transform: translateY(-12px) scale(1.02) !important;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.section-outline-card::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 50%, rgba(var(--color-accent-rgb), 0.12), transparent 70%);
+  opacity: 0;
+  transition: opacity 280ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: -1;
+  filter: blur(20px);
+}
+
+.section-outline-card:hover::before {
+  opacity: 1;
 }
 
 
@@ -634,7 +695,7 @@ body::after {
 
 @media (max-width: 768px) {
   .hero-section {
-    padding-top: calc(var(--section-vertical-spacing) * 0.28);
+    padding-top: calc(var(--section-vertical-spacing) * 0.16);
     padding-bottom: calc(var(--section-vertical-spacing) * 0.55);
   }
 }
@@ -647,7 +708,7 @@ body::after {
 }
 
 @media (max-width: 768px) {
-  .section-shell {
+  .section-shell:not(.hero-section) {
     padding-top: calc(var(--section-vertical-spacing) * 0.65);
     padding-bottom: calc(var(--section-vertical-spacing) * 0.65);
   }
@@ -826,5 +887,162 @@ body::after {
 
   .hero-carousel-card--flying-to-back {
     animation: none !important;
+  }
+}
+
+/* CTA */
+.cta-section {
+  position: relative;
+  isolation: isolate;
+}
+
+.cta-panel {
+  margin-inline: auto;
+  max-width: 720px;
+  padding: clamp(2.5rem, 6vw, 3.8rem);
+  border-radius: calc(var(--card-radius) * 0.9);
+  background: linear-gradient(145deg, rgba(var(--color-background-rgb), 0.92), rgba(243, 246, 255, 0.92));
+  border: 1px solid rgba(var(--color-ring-rgb), 0.22);
+  box-shadow: 0 35px 90px -55px rgba(var(--color-shadow-rgb), 0.55);
+  backdrop-filter: blur(calc(var(--blur-strength) * 0.35));
+}
+
+.cta-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(var(--color-accent-rgb));
+  background: rgba(var(--color-accent-rgb), 0.12);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.28);
+}
+
+.cta-title {
+  font-size: clamp(2.1rem, 4.5vw, 3rem);
+  font-weight: 650;
+  line-height: 1.2;
+  color: rgb(var(--color-foreground-rgb));
+}
+
+.cta-subtitle {
+  font-size: clamp(1rem, 2.6vw, 1.2rem);
+  color: rgba(var(--color-foreground-rgb), 0.7);
+  max-width: 38ch;
+  margin-inline: auto;
+}
+
+.cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-actions .hero-cta-button {
+  padding-inline: clamp(2.5rem, 6vw, 3.2rem);
+  padding-block: clamp(0.95rem, 2vw, 1.1rem);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Footer */
+.footer-section {
+  position: relative;
+  background: rgba(var(--color-background-rgb), 0.38);
+}
+
+.footer-panel {
+  border-top: 1px solid rgba(var(--color-ring-rgb), 0.12);
+  padding: clamp(2.5rem, 5vw, 3.5rem) 0;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.footer-brand {
+  max-width: 420px;
+}
+
+.footer-site-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(var(--color-foreground-rgb));
+}
+
+.footer-tagline {
+  font-size: 0.95rem;
+  color: rgba(var(--color-foreground-rgb), 0.65);
+}
+
+.footer-handle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(var(--color-foreground-rgb), 0.8);
+}
+
+.footer-socials {
+  align-items: flex-start;
+}
+
+.footer-follow-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground-rgb), 0.7);
+}
+
+.footer-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--color-ring-rgb), 0.18);
+  background: rgba(var(--color-background-rgb), 0.75);
+  color: rgba(var(--color-foreground-rgb), 0.8);
+  transition: transform 240ms var(--animation-easing), box-shadow 240ms var(--animation-easing), color 240ms var(--animation-easing), border-color 240ms var(--animation-easing);
+}
+
+.footer-social-link:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--color-accent-rgb), 0.45);
+  color: rgb(var(--color-accent-rgb));
+  box-shadow: 0 12px 28px -18px rgba(var(--color-shadow-rgb), 0.45);
+}
+
+.footer-legal {
+  font-size: 0.85rem;
+  color: rgba(var(--color-foreground-rgb), 0.6);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .footer-socials {
+    align-items: flex-end;
   }
 }

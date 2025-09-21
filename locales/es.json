@@ -140,10 +140,23 @@
     }
   },
   "cta": {
-    "title": "¿Listo para Transformar tu Investigación?",
-    "subtitle": "Únete a miles de investigadores que ya están usando nuestra plataforma",
-    "button": "Iniciar Prueba Gratuita",
-    "socialProof": "Únete a más de 10,000 investigadores",
+    "title": "Aporta claridad a las decisiones de longevidad de frontera",
+    "subtitle": "Únete a la comunidad enfocada en evidencia que define cómo los protocolos avanzados llegan a clientes y pacientes.",
+    "button": "Empieza a explorar",
+    "socialProof": "Confiado por clínicas de longevidad y laboratorios de alto rendimiento",
     "routingNotice": "Plataforma de Investigación • Herramientas Académicas • Síntesis de Evidencia"
+  },
+  "footer": {
+    "tagline": "Claridad para decisiones de longevidad de frontera.",
+    "follow": "Sigue {{handle}}",
+    "legal": "© {{year}} {{name}}. Todos los derechos reservados.",
+    "socials": {
+      "x": "X",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram",
+      "youtube": "YouTube",
+      "substack": "Substack",
+      "reddit": "Reddit"
+    }
   }
 }

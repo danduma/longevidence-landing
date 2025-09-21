@@ -1,6 +1,6 @@
 {
   "hero": {
-    "trustBadge": "Trusted by clinicians and researchers",
+    "trustBadge": "Trusted by researchers and longevity enthusiasts",
     "titlePrimary": "Find out what actually works in longevity",
     "titleDecorations": {
       "underlineTargets": ["what actually works"],
@@ -10,13 +10,13 @@
     "primaryCta": "Start exploring",
     "secondaryTitle": "Free trial • No credit card required",
     "highlightTitle": "Frontier longevity interventions",
-    "highlightSubtitle": "Live signals from interventions with growing clinical traction.",
+    "highlightSubtitle": "The latest interventions with growing clinical traction.",
     "highlightMetricsLabel": "Methodology cadence"
   },
   "interventions": {
     "accent": "Solutions",
     "title": "Featured Interventions",
-    "subtitle": "Powerful tools designed for modern research workflows",
+    "subtitle": "The frontier of longevity interventions",
     "evidenceLevelLabel": "Evidence Level",
     "safetyRatingLabel": "Safety Rating",
     "items": {
@@ -140,10 +140,23 @@
     }
   },
   "cta": {
-    "title": "Ready to Transform Your Research?",
-    "subtitle": "Join thousands of researchers who are already using our platform",
-    "button": "Start Free Trial",
-    "socialProof": "Join 10,000+ researchers",
+    "title": "Find out what actually works in longevity",
+    "subtitle": "Join the evidence-first community shaping how advanced protocols reach clients and patients.",
+    "button": "Start Exploring",
+    "socialProof": "Trusted by researchers and longevity enthusiasts",
     "routingNotice": ""
+  },
+  "footer": {
+    "tagline": "Clarity for frontier longevity decisions.",
+    "follow": "Follow {{handle}}",
+    "legal": "© {{year}} {{name}}. All rights reserved.",
+    "socials": {
+      "x": "X",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram",
+      "youtube": "YouTube",
+      "substack": "Substack",
+      "reddit": "Reddit"
+    }
   }
 }

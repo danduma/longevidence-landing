@@ -1,5 +1,6 @@
 import { BaseManager } from './BaseManager';
- 
+import { getEnvVar } from './env';
+
 export type FeaturedIntervention = {
   id: string;
   name: string;
@@ -38,6 +39,18 @@ export type RoutingMapping = {
   targetDomain: string;
 };
 
+export type SocialLink = {
+  id: string;
+  label: string;
+  icon: string;
+  url: string;
+};
+
+export type SiteMeta = {
+  siteName: string;
+  socialHandle: string;
+};
+
 export type SectionCopy = {
   interventions: {
     accent: string;
@@ -64,6 +77,8 @@ export type LandingContentState = {
   cta: CtaContent;
   routing: RoutingMapping;
   copy: SectionCopy;
+  socials: SocialLink[];
+  siteMeta: SiteMeta;
 };
 
 class LandingContentManagerClass extends BaseManager {
@@ -94,16 +109,28 @@ class LandingContentManagerClass extends BaseManager {
         { id: 'monitor', title: 'Monitor outcomes', description: 'Synthesize practitioner reported outcomes and adverse event logs in real time.', metric: 'Live safety bulletins', icon: 'Radar' }
       ],
       cta: {
-        headline: 'Ready to Transform Your Research?',
-        subhead: 'Join thousands of researchers who are already using our platform',
-        buttonLabel: 'Start Free Trial',
-        socialProof: 'Join 10,000+ researchers'
+        headline: getEnvVar('VITE_CTA_HEADLINE'),
+        subhead: getEnvVar('VITE_CTA_SUBHEAD'),
+        buttonLabel: getEnvVar('VITE_CTA_BUTTON'),
+        socialProof: getEnvVar('VITE_SOCIAL_PROOF')
       },
       routing: {
         primaryDomain: 'longevidence.org',
         appDomain: 'app.longevidence.org',
         alternateDomain: 'longevidence.app',
         targetDomain: 'the.longevidence.app'
+      },
+      socials: [
+        { id: 'x', label: 'X', icon: 'XBrand', url: getEnvVar('VITE_SOCIAL_TWITTER_URL') },
+        { id: 'linkedin', label: 'LinkedIn', icon: 'Linkedin', url: getEnvVar('VITE_SOCIAL_LINKEDIN_URL') },
+        { id: 'instagram', label: 'Instagram', icon: 'Instagram', url: getEnvVar('VITE_SOCIAL_INSTAGRAM_URL') },
+        { id: 'youtube', label: 'YouTube', icon: 'Youtube', url: getEnvVar('VITE_SOCIAL_YOUTUBE_URL') },
+        { id: 'substack', label: 'Substack', icon: 'Newspaper', url: getEnvVar('VITE_SOCIAL_SUBSTACK_URL') },
+        { id: 'reddit', label: 'Reddit', icon: 'MessageCircle', url: getEnvVar('VITE_SOCIAL_REDDIT_URL') }
+      ],
+      siteMeta: {
+        siteName: getEnvVar('VITE_SITE_NAME'),
+        socialHandle: getEnvVar('VITE_SITE_TWITTER_HANDLE')
       },
       copy: {
         interventions: {
@@ -153,6 +180,14 @@ class LandingContentManagerClass extends BaseManager {
 
   getCopy(): SectionCopy {
     return this.state.copy;
+  }
+
+  getSocialLinks(): SocialLink[] {
+    return this.state.socials;
+  }
+
+  getSiteMeta(): SiteMeta {
+    return this.state.siteMeta;
   }
 }
 
