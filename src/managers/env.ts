@@ -22,3 +22,16 @@ export const getJsonEnv = <T>(key: keyof ImportMetaEnv): T => {
     throw new Error(`Failed to parse JSON from environment variable ${key}: ${(error as Error).message}`);
   }
 };
+
+export const getBooleanEnv = (key: keyof ImportMetaEnv): boolean => {
+  const value = getEnvVar(key).toLowerCase();
+  if (value === 'true') {
+    return true;
+  }
+
+  if (value === 'false') {
+    return false;
+  }
+
+  throw new Error(`Environment variable ${key} must be either "true" or "false" but received "${value}".`);
+};

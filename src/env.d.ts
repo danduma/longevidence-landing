@@ -70,6 +70,15 @@ interface ImportMetaEnv {
   readonly VITE_SOCIAL_YOUTUBE_URL: string;
   readonly VITE_SOCIAL_SUBSTACK_URL: string;
   readonly VITE_SOCIAL_REDDIT_URL: string;
+  readonly VITE_PUBLIC_POSTHOG_KEY: string;
+  readonly VITE_PUBLIC_POSTHOG_HOST: string;
+  readonly VITE_PUBLIC_POSTHOG_ASSETS_URL: string;
+  readonly VITE_PUBLIC_POSTHOG_CAPTURE_PAGEVIEW: string;
+  readonly VITE_PUBLIC_POSTHOG_CAPTURE_PAGELEAVE: string;
+  readonly VITE_PUBLIC_POSTHOG_CAPTURE_EXCEPTIONS: string;
+  readonly VITE_PUBLIC_POSTHOG_AUTOCAPTURE: string;
+  readonly VITE_PUBLIC_POSTHOG_DEBUG_MODE: string;
+  readonly VITE_PUBLIC_POSTHOG_PAGEVIEW_EVENT: string;
 }
 
 interface ImportMeta {
