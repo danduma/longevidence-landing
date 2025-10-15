@@ -1,4 +1,5 @@
 import { HeroSection } from './components/sections/HeroSection';
+import { ContentMapSection } from './components/sections/ContentMapSection';
 import { FeaturedInterventionsSection } from './components/sections/FeaturedInterventionsSection';
 import { useManagerState } from './hooks/useManagerState';
 import { LandingContentManager } from './managers/LandingContentManager';
@@ -18,6 +19,7 @@ const App: React.FC = () => {
   return (
     <main className="bg-background text-foreground">
       <HeroSection />
+      {/* <ContentMapSection /> */}
       <FeaturedInterventionsSection interventions={interventions} copy={copy.interventions} />
       <CtaSection />
       <FooterSection />

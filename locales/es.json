@@ -58,6 +58,86 @@
       }
     }
   },
+  "contentMap": {
+    "accent": "Panorama",
+    "title": "Mapa de Contenido de Longevidad",
+    "subtitle": "Explora seis dominios que moldean cómo las intervenciones evolucionan del laboratorio al estilo de vida",
+    "categories": {
+      "cosmetics": {
+        "name": "Cosmética",
+        "summary": "Tratamientos estéticos de longevidad que equilibran apariencia y reparación celular.",
+        "interventions": {
+          "injectionsTopicals": "Botox, rellenos, cremas, retinoides",
+          "bodyReshaping": "Liposucción, cirugía estética",
+          "dermalLaser": "Lásers, tratamientos para el acné",
+          "restoration": "Restauración capilar, blanqueamiento dental"
+        }
+      },
+      "conventionalMedicine": {
+        "name": "Medicina Convencional",
+        "summary": "Atención clínica para diagnósticos, enfermedades crónicas y respuestas agudas.",
+        "interventions": {
+          "diagnosis": "Diagnóstico y triaje",
+          "hospitalCare": "Atención hospitalaria",
+          "approvedDrugs": "Fármacos aprobados",
+          "emergencyResponse": "Respuesta de emergencia",
+          "chronicManagement": "Gestión de enfermedades crónicas",
+          "surgery": "Cirugía y procedimientos"
+        }
+      },
+      "biomedicalResearch": {
+        "name": "Investigación Biomédica",
+        "summary": "Terapias de próxima generación que surgen de laboratorios y ciencia traslacional.",
+        "interventions": {
+          "agingClocks": "Biomarcadores y relojes de envejecimiento",
+          "geneticEngineering": "Ingeniería genética",
+          "geroprotectiveDrugs": "Fármacos geroprotectores",
+          "senolytics": "Senolíticos",
+          "geneTherapy": "Terapia génica: TERT, Klotho, Follistatin",
+          "cellReprogramming": "Reprogramación celular",
+          "artificialOrgans": "Órganos artificiales",
+          "cloning": "Clonación",
+          "cryopreservation": "Criopreservación"
+        }
+      },
+      "lifestyleWellness": {
+        "name": "Estilo de Vida y Bienestar",
+        "summary": "Conductas fundamentales que alinean recuperación, propósito y resiliencia.",
+        "interventions": {
+          "sleep": "Sueño",
+          "nutrition": "Nutrición",
+          "exercise": "Ejercicio",
+          "relationships": "Relaciones",
+          "purpose": "Propósito",
+          "stressManagement": "Gestión del estrés: mindfulness, meditación, naturaleza, luz solar, desintoxicación",
+          "habits": "Hábitos y rutinas"
+        }
+      },
+      "biohacking": {
+        "name": "Biohacking",
+        "summary": "Autoexperimentación con herramientas ricas en datos y compuestos experimentales.",
+        "interventions": {
+          "hormesis": "Hormesis: ayuno, sauna, baños de hielo",
+          "supplements": "Suplementos",
+          "nootropics": "Nootrópicos",
+          "unapproved": "Fármacos no aprobados",
+          "peptides": "Péptidos",
+          "wearables": "Wearables (SpO2, CGM)",
+          "omics": "Pruebas OMICS para consumidores"
+        }
+      },
+      "longevityClinics": {
+        "name": "Clínicas de Longevidad",
+        "summary": "Programas integrados que entregan protocolos avanzados bajo supervisión experta.",
+        "interventions": {
+          "plasmapheresis": "Plasmaféresis/TPE, PRP, infusiones IV",
+          "stemCell": "Terapias con células madre",
+          "lightOxygen": "Terapia de luz roja, HBOT",
+          "bodyScans": "Escaneos corporales"
+        }
+      }
+    }
+  },
   "audience": {
     "accent": "Para",
     "title": "Construido para Cada Investigador",

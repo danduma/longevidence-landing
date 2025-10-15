@@ -51,6 +51,19 @@ export type SiteMeta = {
   socialHandle: string;
 };
 
+export type ContentMapIntervention = {
+  id: string;
+  label: string;
+};
+
+export type ContentMapCategory = {
+  id: string;
+  name: string;
+  icon: string;
+  summary: string;
+  interventions: ContentMapIntervention[];
+};
+
 export type SectionCopy = {
   interventions: {
     accent: string;
@@ -58,6 +71,11 @@ export type SectionCopy = {
     subtitle: string;
     evidenceLabel: string;
     safetyLabel: string;
+  };
+  contentMap: {
+    accent: string;
+    title: string;
+    subtitle: string;
   };
   audience: {
     title: string;
@@ -72,6 +90,7 @@ export type SectionCopy = {
 
 export type LandingContentState = {
   interventions: FeaturedIntervention[];
+  contentMap: ContentMapCategory[];
   audiences: AudienceSegment[];
   methodology: MethodologyStep[];
   cta: CtaContent;
@@ -94,6 +113,93 @@ class LandingContentManagerClass extends BaseManager {
         { id: 'redLight', name: 'Red light therapy', evidenceLevel: 'Growing human trials', safetyRating: 'Generally well tolerated', summary: 'Photobiomodulation for mitochondrial resilience and skin health.', icon: 'SunMedium' },
         { id: 'hbot', name: 'Hyperbaric oxygen', evidenceLevel: 'Strong niche studies', safetyRating: 'Medical supervision needed', summary: 'Pressurized oxygen protocols for recovery and neuroplasticity.', icon: 'Waveform' },
         { id: 'tert', name: 'TERT modulation', evidenceLevel: 'Speculative early-stage', safetyRating: 'Investigational only', summary: 'Telomerase activation strategies exploring cellular age reversal.', icon: 'Dna' }
+      ],
+      contentMap: [
+        {
+          id: 'cosmetics',
+          name: 'Cosmetics',
+          icon: 'Sparkles',
+          summary: 'Aesthetic longevity treatments balancing appearance and cellular repair.',
+          interventions: [
+            { id: 'injectionsTopicals', label: 'Botox, fillers, creams, retinoids' },
+            { id: 'bodyReshaping', label: 'Liposuction, cosmetic surgery' },
+            { id: 'dermalLaser', label: 'Lasers, acne treatments' },
+            { id: 'restoration', label: 'Hair restoration, teeth whitening' }
+          ]
+        },
+        {
+          id: 'conventionalMedicine',
+          name: 'Conventional Medicine',
+          icon: 'Stethoscope',
+          summary: 'Clinical-grade care for diagnostics, chronic disease, and acute response.',
+          interventions: [
+            { id: 'diagnosis', label: 'Diagnosis & triage' },
+            { id: 'hospitalCare', label: 'Hospital care' },
+            { id: 'approvedDrugs', label: 'Approved drugs' },
+            { id: 'emergencyResponse', label: 'Emergency response' },
+            { id: 'chronicManagement', label: 'Chronic disease management' },
+            { id: 'surgery', label: 'Surgery & procedures' }
+          ]
+        },
+        {
+          id: 'biomedicalResearch',
+          name: 'Biomedical Research',
+          icon: 'FlaskConical',
+          summary: 'Next-gen therapies emerging from labs and translational science.',
+          interventions: [
+            { id: 'agingClocks', label: 'Biomarkers & aging clocks' },
+            { id: 'geneticEngineering', label: 'Genetic engineering' },
+            { id: 'geroprotectiveDrugs', label: 'Geroprotective drugs' },
+            { id: 'senolytics', label: 'Senolytics' },
+            { id: 'geneTherapy', label: 'Gene therapy: TERT, Klotho, Follistatin' },
+            { id: 'cellReprogramming', label: 'Cell reprogramming' },
+            { id: 'artificialOrgans', label: 'Artificial organs' },
+            { id: 'cloning', label: 'Cloning' },
+            { id: 'cryopreservation', label: 'Cryopreservation' }
+          ]
+        },
+        {
+          id: 'lifestyleWellness',
+          name: 'Lifestyle & Wellness',
+          icon: 'HeartPulse',
+          summary: 'Foundational behaviors aligning recovery, purpose, and resilience.',
+          interventions: [
+            { id: 'sleep', label: 'Sleep' },
+            { id: 'nutrition', label: 'Nutrition' },
+            { id: 'exercise', label: 'Exercise' },
+            { id: 'relationships', label: 'Relationships' },
+            { id: 'purpose', label: 'Purpose' },
+            { id: 'stressManagement', label: 'Stress management: mindfulness, meditation, nature, sunlight, detox' },
+            { id: 'habits', label: 'Habits & routines' }
+          ]
+        },
+        {
+          id: 'biohacking',
+          name: 'Biohacking',
+          icon: 'Cpu',
+          summary: 'Self-experimentation with data-rich tools and experimental compounds.',
+          interventions: [
+            { id: 'hormesis', label: 'Hormesis: Fasting, sauna, ice baths' },
+            { id: 'supplements', label: 'Supplements' },
+            { id: 'nootropics', label: 'Nootropics' },
+            { id: 'unapproved', label: 'Unapproved drugs' },
+            { id: 'peptides', label: 'Peptides' },
+            { id: 'wearables', label: 'Wearables (SpO2, CGM)' },
+            { id: 'omics', label: 'Consumer OMICS tests' }
+          ]
+        },
+        {
+          id: 'longevityClinics',
+          name: 'Longevity Clinics',
+          icon: 'Building',
+          summary: 'Integrated programs delivering advanced protocols under expert supervision.',
+          interventions: [
+            { id: 'plasmapheresis', label: 'Plasmapheresis/TPE, PRP, IV infusions' },
+            { id: 'stemCell', label: 'Stem cell therapies' },
+            { id: 'lightOxygen', label: 'Red light therapy, HBOT' },
+            { id: 'bodyScans', label: 'Body scans' }
+          ]
+        }
       ],
       audiences: [
         { id: 'coaches', name: 'Performance coaches', description: 'Translate research into client-ready interventions without losing nuance.', icon: 'UserRoundCheck' },
@@ -135,10 +241,15 @@ class LandingContentManagerClass extends BaseManager {
       copy: {
         interventions: {
           accent: 'Solutions',
-          title: 'Featured Interventions',
+          title: 'Featured Pages',
           subtitle: 'Powerful tools designed for modern research workflows',
           evidenceLabel: 'Evidence Level',
           safetyLabel: 'Safety Rating'
+        },
+        contentMap: {
+          accent: 'Landscape',
+          title: 'Map of all longevity interventions',
+          subtitle: 'Explore six domains shaping how interventions evolve from labs to lifestyle'
         },
         audience: {
           title: 'Built for Every Researcher',
@@ -164,6 +275,10 @@ class LandingContentManagerClass extends BaseManager {
 
   getAudienceSegments(): AudienceSegment[] {
     return this.state.audiences;
+  }
+
+  getContentMap(): ContentMapCategory[] {
+    return this.state.contentMap;
   }
 
   getMethodologySteps(): MethodologyStep[] {

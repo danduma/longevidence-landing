@@ -15,7 +15,7 @@
   },
   "interventions": {
     "accent": "Solutions",
-    "title": "Featured Interventions",
+    "title": "Featured Pages",
     "subtitle": "The frontier of longevity interventions",
     "evidenceLevelLabel": "Evidence Level",
     "safetyRatingLabel": "Safety Rating",
@@ -55,6 +55,86 @@
         "summary": "Telomerase activation strategies exploring cellular age reversal.",
         "evidenceLevel": "Speculative early-stage",
         "safetyRating": "Investigational only"
+      }
+    }
+  },
+  "contentMap": {
+    "accent": "Landscape",
+    "title": "Map of all longevity interventions",
+    "subtitle": "Explore six domains shaping how interventions evolve from labs to lifestyle",
+    "categories": {
+      "cosmetics": {
+        "name": "Cosmetics",
+        "summary": "Aesthetic longevity treatments balancing appearance and cellular repair.",
+        "interventions": {
+          "injectionsTopicals": "Botox, fillers, creams, retinoids",
+          "bodyReshaping": "Liposuction, cosmetic surgery",
+          "dermalLaser": "Lasers, acne treatments",
+          "restoration": "Hair restoration, teeth whitening"
+        }
+      },
+      "conventionalMedicine": {
+        "name": "Conventional Medicine",
+        "summary": "Clinical-grade care for diagnostics, chronic disease, and acute response.",
+        "interventions": {
+          "diagnosis": "Diagnosis & triage",
+          "hospitalCare": "Hospital care",
+          "approvedDrugs": "Approved drugs",
+          "emergencyResponse": "Emergency response",
+          "chronicManagement": "Chronic disease management",
+          "surgery": "Surgery & procedures"
+        }
+      },
+      "biomedicalResearch": {
+        "name": "Biomedical Research",
+        "summary": "Next-gen therapies emerging from labs and translational science.",
+        "interventions": {
+          "agingClocks": "Biomarkers & aging clocks",
+          "geneticEngineering": "Genetic engineering",
+          "geroprotectiveDrugs": "Geroprotective drugs",
+          "senolytics": "Senolytics",
+          "geneTherapy": "Gene therapy: TERT, Klotho, Follistatin",
+          "cellReprogramming": "Cell reprogramming",
+          "artificialOrgans": "Artificial organs",
+          "cloning": "Cloning",
+          "cryopreservation": "Cryopreservation"
+        }
+      },
+      "lifestyleWellness": {
+        "name": "Lifestyle & Wellness",
+        "summary": "Foundational behaviors aligning recovery, purpose, and resilience.",
+        "interventions": {
+          "sleep": "Sleep",
+          "nutrition": "Nutrition",
+          "exercise": "Exercise",
+          "relationships": "Relationships",
+          "purpose": "Purpose",
+          "stressManagement": "Stress management: mindfulness, meditation, nature, sunlight, detox",
+          "habits": "Habits & routines"
+        }
+      },
+      "biohacking": {
+        "name": "Biohacking",
+        "summary": "Self-experimentation with data-rich tools and experimental compounds.",
+        "interventions": {
+          "hormesis": "Hormesis: Fasting, sauna, ice baths",
+          "supplements": "Supplements",
+          "nootropics": "Nootropics",
+          "unapproved": "Unapproved drugs",
+          "peptides": "Peptides",
+          "wearables": "Wearables (SpO2, CGM)",
+          "omics": "Consumer OMICS tests"
+        }
+      },
+      "longevityClinics": {
+        "name": "Longevity Clinics",
+        "summary": "Integrated programs delivering advanced protocols under expert supervision.",
+        "interventions": {
+          "plasmapheresis": "Plasmapheresis/TPE, PRP, IV infusions",
+          "stemCell": "Stem cell therapies",
+          "lightOxygen": "Red light therapy, HBOT",
+          "bodyScans": "Body scans"
+        }
       }
     }
   },

@@ -1,15 +1,25 @@
 import { forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {}
+type BadgeVariant = 'default' | 'secondary' | 'outline' | 'subtle';
 
-export const Badge = forwardRef<HTMLDivElement, BadgeProps>(({ className, ...props }, ref) => (
+const baseBadgeClasses = 'inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2';
+
+const badgeVariantClasses: Record<BadgeVariant, string> = {
+  default: 'border-transparent bg-accent text-white shadow',
+  secondary: 'border-transparent bg-muted text-muted-foreground',
+  outline: 'border-foreground/20 bg-transparent text-foreground',
+  subtle: 'border-transparent bg-foreground/5 text-muted/90'
+};
+
+export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: BadgeVariant;
+}
+
+export const Badge = forwardRef<HTMLDivElement, BadgeProps>(({ className, variant = 'default', ...props }, ref) => (
   <div
     ref={ref}
-    className={twMerge(
-      'inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-accent',
-      className
-    )}
+    className={twMerge(baseBadgeClasses, badgeVariantClasses[variant], className)}
     {...props}
   />
 ));
