@@ -2,7 +2,7 @@ import * as Icons from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useTranslation } from '../../i18n';
 
-import type { FeaturedIntervention, SectionCopy } from '../../managers/LandingContentManager';
+import type { FeaturedIntervention } from '../../managers/LandingContentManager';
 import { Reveal } from '../Reveal';
 import { Badge } from '../ui/badge';
 import { Card } from '../ui/card';
@@ -15,10 +15,9 @@ const getIcon = (name: string): LucideIcon => {
 
 interface FeaturedInterventionsSectionProps {
   interventions: FeaturedIntervention[];
-  copy: SectionCopy['interventions'];
 }
 
-export const FeaturedInterventionsSection: React.FC<FeaturedInterventionsSectionProps> = ({ interventions, copy }) => {
+export const FeaturedInterventionsSection: React.FC<FeaturedInterventionsSectionProps> = ({ interventions }) => {
   const { t } = useTranslation();
 
   const headingReveal = useReveal('interventions-heading', { threshold: 0.3, rootMargin: '-10% 0px' });
@@ -32,14 +31,14 @@ export const FeaturedInterventionsSection: React.FC<FeaturedInterventionsSection
           className={`vertical-stack gap-4 fade-up ${headingReveal.visible ? 'is-visible' : ''}`}
         >
           <Badge className="w-fit">
-            {t('interventions.accent', {}, copy.accent)}
+            {t('interventions.accent', {}, 'Solutions')}
           </Badge>
           <div className="vertical-stack gap-3">
             <h2 className="text-3xl font-semibold text-foreground sm:text-4xl">
-              {t('interventions.title', {}, copy.title)}
+              {t('interventions.title', {}, 'Featured Pages')}
             </h2>
             <p className="max-w-2xl text-base text-muted/90">
-              {t('interventions.subtitle', {}, copy.subtitle)}
+              {t('interventions.subtitle', {}, 'Powerful tools designed for modern research workflows')}
             </p>
           </div>
         </div>
@@ -80,7 +79,7 @@ export const FeaturedInterventionsSection: React.FC<FeaturedInterventionsSection
                     <div className="grid grid-cols-2 gap-4 rounded-3xl border border-accent/15 bg-accent/10 px-4 py-3 text-sm font-medium text-foreground/90 shadow-inner">
                       <div className="vertical-stack gap-1">
                         <span className="text-xs uppercase tracking-[0.2em] text-muted/70">
-                          {t('interventions.evidenceLevelLabel', {}, copy.evidenceLabel)}
+                          {t('interventions.evidenceLevelLabel', {}, 'Evidence Level')}
                         </span>
                         <span className="text-base">
                           {t(
@@ -92,7 +91,7 @@ export const FeaturedInterventionsSection: React.FC<FeaturedInterventionsSection
                       </div>
                       <div className="vertical-stack gap-1">
                         <span className="text-xs uppercase tracking-[0.2em] text-muted/70">
-                          {t('interventions.safetyRatingLabel', {}, copy.safetyLabel)}
+                          {t('interventions.safetyRatingLabel', {}, 'Safety Rating')}
                         </span>
                         <span className="text-base">
                           {t(

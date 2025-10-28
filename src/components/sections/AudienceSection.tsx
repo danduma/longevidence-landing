@@ -2,7 +2,7 @@ import * as Icons from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useTranslation } from '../../i18n';
 
-import type { AudienceSegment, SectionCopy } from '../../managers/LandingContentManager';
+import type { AudienceSegment } from '../../managers/LandingContentManager';
 import { Reveal } from '../Reveal';
 import { Card } from '../ui/card';
 import { useReveal } from '../../hooks/useReveal';
@@ -14,10 +14,9 @@ const getIcon = (name: string): LucideIcon => {
 
 interface AudienceSectionProps {
   audience: AudienceSegment[];
-  copy: SectionCopy['audience'];
 }
 
-export const AudienceSection: React.FC<AudienceSectionProps> = ({ audience, copy }) => {
+export const AudienceSection: React.FC<AudienceSectionProps> = ({ audience }) => {
   const { t } = useTranslation();
 
   const headingReveal = useReveal('audience-heading', { threshold: 0.3, rootMargin: '-10% 0px' });
@@ -31,10 +30,10 @@ export const AudienceSection: React.FC<AudienceSectionProps> = ({ audience, copy
           className={`vertical-stack gap-4 fade-up ${headingReveal.visible ? 'is-visible' : ''}`}
         >
           <h2 className="text-3xl font-semibold text-foreground sm:text-4xl">
-            {t('audience.title', {}, copy.title)}
+            {t('audience.title', {}, 'Built for Every Researcher')}
           </h2>
           <p className="max-w-2xl text-base text-muted/90">
-            {t('audience.subtitle', {}, copy.subtitle)}
+            {t('audience.subtitle', {}, 'Tailored solutions for different research needs and workflows')}
           </p>
         </div>
         <div

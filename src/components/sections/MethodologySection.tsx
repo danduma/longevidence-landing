@@ -3,7 +3,7 @@ import type { LucideIcon } from 'lucide-react';
 import { HelpCircle } from 'lucide-react';
 import { useTranslation } from '../../i18n';
 
-import type { MethodologyStep, SectionCopy } from '../../managers/LandingContentManager';
+import type { MethodologyStep } from '../../managers/LandingContentManager';
 import { Reveal } from '../Reveal';
 import { Badge } from '../ui/badge';
 import { Card } from '../ui/card';
@@ -13,10 +13,9 @@ const iconLibrary = Icons as unknown as Record<string, LucideIcon>;
 
 interface MethodologySectionProps {
   steps: MethodologyStep[];
-  copy: SectionCopy['methodology'];
 }
 
-export const MethodologySection: React.FC<MethodologySectionProps> = ({ steps, copy }) => {
+export const MethodologySection: React.FC<MethodologySectionProps> = ({ steps }) => {
   const { t } = useTranslation();
 
   const headingReveal = useReveal('methodology-heading', { threshold: 0.3, rootMargin: '-10% 0px' });
@@ -30,14 +29,14 @@ export const MethodologySection: React.FC<MethodologySectionProps> = ({ steps, c
           className={`vertical-stack gap-4 fade-up ${headingReveal.visible ? 'is-visible' : ''}`}
         >
           <Badge className="w-fit bg-accent/15 text-accent">
-            {t('methodology.accent', {}, copy.accent)}
+            {t('methodology.accent', {}, 'Process')}
           </Badge>
           <div className="vertical-stack gap-3">
             <h2 className="text-3xl font-semibold text-foreground sm:text-4xl">
-              {t('methodology.title', {}, copy.title)}
+              {t('methodology.title', {}, 'Our Methodology')}
             </h2>
             <p className="max-w-2xl text-base text-muted/90">
-              {t('methodology.subtitle', {}, copy.subtitle)}
+              {t('methodology.subtitle', {}, 'A systematic approach to research excellence')}
             </p>
           </div>
         </div>

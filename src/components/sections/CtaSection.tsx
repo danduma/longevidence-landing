@@ -11,7 +11,7 @@ export const CtaSection: React.FC = () => {
   const panelReveal = useReveal('cta-panel', { threshold: 0.4, rootMargin: '-10% 0px' });
 
   return (
-    <section className="section-shell cta-section">
+    <section className="py-16 md:py-20 lg:py-24 cta-section">
       <div className="section-container">
         <div
           ref={panelReveal.ref}

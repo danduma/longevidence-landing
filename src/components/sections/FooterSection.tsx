@@ -1,5 +1,6 @@
 import * as Icons from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { FaReddit, FaLinkedin, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { useMemo, forwardRef } from 'react';
 import type { ComponentPropsWithoutRef } from 'react';
 import { useTranslation } from '../../i18n';
@@ -26,7 +27,11 @@ RawXBrandIcon.displayName = 'XBrandIcon';
 const XBrandIcon = RawXBrandIcon as unknown as LucideIcon;
 
 const customIcons: Record<string, LucideIcon> = {
-  XBrand: XBrandIcon
+  XBrand: XBrandIcon,
+  Reddit: FaReddit as unknown as LucideIcon,
+  Linkedin: FaLinkedin as unknown as LucideIcon,
+  Instagram: FaInstagram as unknown as LucideIcon,
+  Youtube: FaYoutube as unknown as LucideIcon
 };
 
 const resolveIcon = (name: string): LucideIcon => {
@@ -45,10 +50,10 @@ export const FooterSection: React.FC = () => {
   const currentYear = useMemo(() => new Date().getFullYear(), []);
 
   return (
-    <footer className="section-shell footer-section">
+    <footer className="py-12 md:py-16 lg:py-20 footer-section">
       <div className="section-container">
         <div
-          ref={footerReveal.ref}
+          ref={socials.length > 0 ? footerReveal.ref : null}
           className={`footer-panel fade-up ${footerReveal.visible ? 'is-visible' : ''}`}
         >
           <div className="footer-content">
@@ -59,11 +64,11 @@ export const FooterSection: React.FC = () => {
               </p>
               <span className="footer-handle">{siteMeta.socialHandle}</span>
             </div>
-            <div className="footer-socials vertical-stack gap-3">
+            <div className="footer-contact-us vertical-stack gap-3">
               <span className="footer-follow-label">
                 {t('footer.follow', { handle: siteMeta.socialHandle }, `Follow ${siteMeta.socialHandle}`)}
               </span>
-              <div className="footer-social-links">
+              <div className="footer-connect-list">
                 {socials.map((social) => {
                   const IconComponent = resolveIcon(social.icon);
                   return (

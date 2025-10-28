@@ -167,7 +167,7 @@ export const HeroSection: React.FC = () => {
   const decoratedTitle = useMemo(() => createDecoratedTitle(heroTitle, decorations), [heroTitle, decorations]);
 
   return (
-    <section className="section-shell hero-section relative overflow-hidden">
+    <section className="py-12 md:py-16 lg:py-18 hero-section relative overflow-hidden">
       <div className="hero-ambient" aria-hidden>
         <div className="hero-gradient" />
         <div className="hero-orb hero-orb--primary" />
@@ -227,6 +227,7 @@ export const HeroSection: React.FC = () => {
         </HeroShowcaseCard>
         </div>
       </div>
+      
     </section>
   );
 };

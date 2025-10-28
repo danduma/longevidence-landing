@@ -10,6 +10,22 @@ export type FeaturedIntervention = {
   icon: string;
 };
 
+export type ContentMapIntervention = {
+  id: string;
+  label: string;
+  subtitle: string;
+  icon: string;
+  url?: string;
+};
+
+export type ContentMapCategory = {
+  id: string;
+  name: string;
+  icon: string;
+  summary: string;
+  interventions: ContentMapIntervention[];
+};
+
 export type AudienceSegment = {
   id: string;
   name: string;
@@ -33,7 +49,8 @@ export type CtaContent = {
 };
 
 export type RoutingMapping = {
-  primaryDomain: string;
+  interventions: Record<string, string>;
+  contentMap: Record<string, string>;
   appDomain: string;
   alternateDomain: string;
   targetDomain: string;
@@ -51,43 +68,6 @@ export type SiteMeta = {
   socialHandle: string;
 };
 
-export type ContentMapIntervention = {
-  id: string;
-  label: string;
-};
-
-export type ContentMapCategory = {
-  id: string;
-  name: string;
-  icon: string;
-  summary: string;
-  interventions: ContentMapIntervention[];
-};
-
-export type SectionCopy = {
-  interventions: {
-    accent: string;
-    title: string;
-    subtitle: string;
-    evidenceLabel: string;
-    safetyLabel: string;
-  };
-  contentMap: {
-    accent: string;
-    title: string;
-    subtitle: string;
-  };
-  audience: {
-    title: string;
-    subtitle: string;
-  };
-  methodology: {
-    accent: string;
-    title: string;
-    subtitle: string;
-  };
-};
-
 export type LandingContentState = {
   interventions: FeaturedIntervention[];
   contentMap: ContentMapCategory[];
@@ -95,17 +75,20 @@ export type LandingContentState = {
   methodology: MethodologyStep[];
   cta: CtaContent;
   routing: RoutingMapping;
-  copy: SectionCopy;
   socials: SocialLink[];
   siteMeta: SiteMeta;
 };
 
 class LandingContentManagerClass extends BaseManager {
-  private readonly state: LandingContentState;
+  private state: LandingContentState;
 
   constructor() {
     super();
-    this.state = {
+    this.state = this.buildState();
+  }
+
+  private buildState(): LandingContentState {
+    return {
       interventions: [
         { id: 'prp', name: 'Platelet-rich plasma', evidenceLevel: 'Emerging clinical consensus', safetyRating: 'Moderate with expert protocols', summary: 'Autologous platelet concentrates for tissue regeneration and joint health.', icon: 'Syringe' },
         { id: 'plasmapheresis', name: 'Plasmapheresis', evidenceLevel: 'Limited randomized data', safetyRating: 'High complexity', summary: 'Extracorporeal plasma exchange investigating rejuvenation markers.', icon: 'Droplets' },
@@ -116,61 +99,18 @@ class LandingContentManagerClass extends BaseManager {
       ],
       contentMap: [
         {
-          id: 'cosmetics',
-          name: 'Cosmetics',
-          icon: 'Sparkles',
-          summary: 'Aesthetic longevity treatments balancing appearance and cellular repair.',
-          interventions: [
-            { id: 'injectionsTopicals', label: 'Botox, fillers, creams, retinoids' },
-            { id: 'bodyReshaping', label: 'Liposuction, cosmetic surgery' },
-            { id: 'dermalLaser', label: 'Lasers, acne treatments' },
-            { id: 'restoration', label: 'Hair restoration, teeth whitening' }
-          ]
-        },
-        {
-          id: 'conventionalMedicine',
-          name: 'Conventional Medicine',
-          icon: 'Stethoscope',
-          summary: 'Clinical-grade care for diagnostics, chronic disease, and acute response.',
-          interventions: [
-            { id: 'diagnosis', label: 'Diagnosis & triage' },
-            { id: 'hospitalCare', label: 'Hospital care' },
-            { id: 'approvedDrugs', label: 'Approved drugs' },
-            { id: 'emergencyResponse', label: 'Emergency response' },
-            { id: 'chronicManagement', label: 'Chronic disease management' },
-            { id: 'surgery', label: 'Surgery & procedures' }
-          ]
-        },
-        {
-          id: 'biomedicalResearch',
-          name: 'Biomedical Research',
-          icon: 'FlaskConical',
-          summary: 'Next-gen therapies emerging from labs and translational science.',
-          interventions: [
-            { id: 'agingClocks', label: 'Biomarkers & aging clocks' },
-            { id: 'geneticEngineering', label: 'Genetic engineering' },
-            { id: 'geroprotectiveDrugs', label: 'Geroprotective drugs' },
-            { id: 'senolytics', label: 'Senolytics' },
-            { id: 'geneTherapy', label: 'Gene therapy: TERT, Klotho, Follistatin' },
-            { id: 'cellReprogramming', label: 'Cell reprogramming' },
-            { id: 'artificialOrgans', label: 'Artificial organs' },
-            { id: 'cloning', label: 'Cloning' },
-            { id: 'cryopreservation', label: 'Cryopreservation' }
-          ]
-        },
-        {
           id: 'lifestyleWellness',
           name: 'Lifestyle & Wellness',
           icon: 'HeartPulse',
           summary: 'Foundational behaviors aligning recovery, purpose, and resilience.',
           interventions: [
-            { id: 'sleep', label: 'Sleep' },
-            { id: 'nutrition', label: 'Nutrition' },
-            { id: 'exercise', label: 'Exercise' },
-            { id: 'relationships', label: 'Relationships' },
-            { id: 'purpose', label: 'Purpose' },
-            { id: 'stressManagement', label: 'Stress management: mindfulness, meditation, nature, sunlight, detox' },
-            { id: 'habits', label: 'Habits & routines' }
+            { id: 'sleep', label: 'Sleep', subtitle: 'Restorative rest, circadian rhythm', icon: 'Moon', url: 'https://app.longevidence.org/pages/sleep' },
+            { id: 'nutrition', label: 'Nutrition', subtitle: 'Diet, fasting, supplements', icon: 'Apple' },
+            { id: 'exercise', label: 'Exercise', subtitle: 'Strength, cardio, flexibility', icon: 'Dumbbell', url: 'https://app.longevidence.org/pages/exercise' },
+            { id: 'relationships', label: 'Relationships', subtitle: 'Social connections, community', icon: 'Users', url: 'https://app.longevidence.org/pages/relationships' },
+            { id: 'purpose', label: 'Purpose', subtitle: 'Meaning, goals, contribution', icon: 'Compass' },
+            { id: 'stressManagement', label: 'Stress management', subtitle: 'Mindfulness, meditation, nature, sunlight, detox', icon: 'Sparkles' },
+            { id: 'habits', label: 'Habits & routines', subtitle: 'Daily practices, behavior change', icon: 'Repeat' }
           ]
         },
         {
@@ -179,13 +119,13 @@ class LandingContentManagerClass extends BaseManager {
           icon: 'Cpu',
           summary: 'Self-experimentation with data-rich tools and experimental compounds.',
           interventions: [
-            { id: 'hormesis', label: 'Hormesis: Fasting, sauna, ice baths' },
-            { id: 'supplements', label: 'Supplements' },
-            { id: 'nootropics', label: 'Nootropics' },
-            { id: 'unapproved', label: 'Unapproved drugs' },
-            { id: 'peptides', label: 'Peptides' },
-            { id: 'wearables', label: 'Wearables (SpO2, CGM)' },
-            { id: 'omics', label: 'Consumer OMICS tests' }
+            { id: 'hormesis', label: 'Hormesis', subtitle: 'Fasting, sauna, ice baths', icon: 'Flame' },
+            { id: 'supplements', label: 'Supplements', subtitle: 'Vitamins, minerals, botanicals', icon: 'Pill' },
+            { id: 'nootropics', label: 'Nootropics', subtitle: 'Cognitive enhancers, smart drugs', icon: 'Brain' },
+            { id: 'unapproved', label: 'Unapproved drugs', subtitle: 'Off-label, experimental compounds', icon: 'FlaskRound' },
+            { id: 'peptides', label: 'Peptides', subtitle: 'BPC-157, TB-500, GHK-Cu', icon: 'Atom' },
+            { id: 'wearables', label: 'Wearables', subtitle: 'SpO2, CGM, fitness trackers', icon: 'Watch' },
+            { id: 'omics', label: 'Consumer OMICS tests', subtitle: 'Genomics, proteomics, microbiome', icon: 'ScanEye' }
           ]
         },
         {
@@ -194,10 +134,53 @@ class LandingContentManagerClass extends BaseManager {
           icon: 'Building',
           summary: 'Integrated programs delivering advanced protocols under expert supervision.',
           interventions: [
-            { id: 'plasmapheresis', label: 'Plasmapheresis/TPE, PRP, IV infusions' },
-            { id: 'stemCell', label: 'Stem cell therapies' },
-            { id: 'lightOxygen', label: 'Red light therapy, HBOT' },
-            { id: 'bodyScans', label: 'Body scans' }
+            { id: 'plasmapheresis', label: 'Blood therapies', subtitle: 'Plasmapheresis, TPE, PRP, IV infusions', icon: 'Droplets', url: 'https://app.longevidence.org/en/pages/prp-platelet-rich-plasma' },
+            { id: 'stemCell', label: 'Stem cell therapies', subtitle: 'Regenerative medicine, MSCs', icon: 'TestTubeDiagonal', url: 'https://app.longevidence.org/en/pages/stem-cell-therapy' },
+            { id: 'lightOxygen', label: 'Light & oxygen', subtitle: 'Red light therapy, HBOT', icon: 'SunMedium' },
+            { id: 'bodyScans', label: 'Body scans', subtitle: 'MRI, DEXA, full-body imaging', icon: 'ScanLine' }
+          ]
+        },
+        {
+          id: 'esthetics',
+          name: 'Esthetics',
+          icon: 'Sparkles',
+          summary: 'Aesthetic longevity treatments balancing appearance and cellular repair.',
+          interventions: [
+            { id: 'injectionsTopicals', label: 'Injectables & topicals', subtitle: 'Botox, fillers, creams, retinoids', icon: 'Syringe' },
+            { id: 'bodyReshaping', label: 'Body reshaping', subtitle: 'Liposuction, cosmetic surgery', icon: 'ScissorsLineDashed' },
+            { id: 'dermalLaser', label: 'Dermal treatments', subtitle: 'Lasers, peels, acne treatments', icon: 'Sparkle' },
+            { id: 'restoration', label: 'Restoration', subtitle: 'Hair restoration, teeth whitening', icon: 'Smile' }
+          ]
+        },
+        {
+          id: 'biomedicalResearch',
+          name: 'Biomedical Research',
+          icon: 'FlaskConical',
+          summary: 'Next-gen therapies emerging from labs and translational science.',
+          interventions: [
+            { id: 'agingClocks', label: 'Biomarkers & aging clocks', subtitle: 'Epigenetic, metabolomic testing', icon: 'Timer' },
+            { id: 'geneticEngineering', label: 'Genetic engineering', subtitle: 'CRISPR, base editing, prime editing', icon: 'Dna' },
+            { id: 'geroprotectiveDrugs', label: 'Geroprotective drugs', subtitle: 'Rapamycin, metformin, NAD+ boosters', icon: 'Tablets' },
+            { id: 'senolytics', label: 'Senolytics', subtitle: 'Clearing senescent cells', icon: 'CircleX' },
+            { id: 'geneTherapy', label: 'Gene therapy', subtitle: 'TERT, Klotho, Follistatin', icon: 'Syringe' },
+            { id: 'cellReprogramming', label: 'Cell reprogramming', subtitle: 'Yamanaka factors, partial reprogramming', icon: 'RefreshCcw' },
+            { id: 'artificialOrgans', label: 'Artificial organs', subtitle: 'Bioprinting, organoids', icon: 'Heart' },
+            { id: 'cloning', label: 'Cloning', subtitle: 'Reproductive, therapeutic', icon: 'Copy' },
+            { id: 'cryopreservation', label: 'Cryopreservation', subtitle: 'Whole-body, neuroscience', icon: 'Snowflake' }
+          ]
+        },
+        {
+          id: 'conventionalMedicine',
+          name: 'Conventional Medicine',
+          icon: 'Stethoscope',
+          summary: 'Clinical-grade care for diagnostics, chronic disease, and acute response.',
+          interventions: [
+            { id: 'diagnosis', label: 'Diagnosis & triage', subtitle: 'Testing, screening, assessment', icon: 'Stethoscope' },
+            { id: 'hospitalCare', label: 'Hospital care', subtitle: 'Inpatient, intensive care', icon: 'Hospital' },
+            { id: 'approvedDrugs', label: 'Approved drugs', subtitle: 'FDA-approved medications', icon: 'Pill' },
+            { id: 'emergencyResponse', label: 'Emergency response', subtitle: 'Trauma, acute care', icon: 'Siren' },
+            { id: 'chronicManagement', label: 'Chronic disease management', subtitle: 'Diabetes, hypertension, heart disease', icon: 'ClipboardList' },
+            { id: 'surgery', label: 'Surgery & procedures', subtitle: 'Operative interventions', icon: 'Activity' }
           ]
         }
       ],
@@ -221,10 +204,25 @@ class LandingContentManagerClass extends BaseManager {
         socialProof: getEnvVar('VITE_SOCIAL_PROOF')
       },
       routing: {
-        primaryDomain: 'longevidence.org',
-        appDomain: 'app.longevidence.org',
-        alternateDomain: 'longevidence.app',
-        targetDomain: 'the.longevidence.app'
+        interventions: {
+          prp: 'https://app.longevidence.org/en/pages/prp-platelet-rich-plasma',
+          plasmapheresis: 'https://app.longevidence.org/en/pages/plasmapheresis',
+          peptides: 'https://app.longevidence.org/en/pages/peptides',
+          redLight: 'https://app.longevidence.org/en/pages/red-light-therapy',
+          hbot: 'https://app.longevidence.org/en/pages/hyperbaric-oxygen-therapy',
+          tert: 'https://app.longevidence.org/en/pages/tert-modulation'
+        },
+        contentMap: {
+          lifestyleWellness: 'https://app.longevidence.org/en/pages/lifestyle-wellness',
+          biohacking: 'https://app.longevidence.org/en/pages/biohacking',
+          longevityClinics: 'https://app.longevidence.org/en/pages/longevity-clinics',
+          esthetics: 'https://app.longevidence.org/en/pages/esthetics',
+          biomedicalResearch: 'https://app.longevidence.org/en/pages/biomedical-research',
+          conventionalMedicine: 'https://app.longevidence.org/en/pages/conventional-medicine'
+        },
+        appDomain: getEnvVar('VITE_ROUTING_APP_DOMAIN'),
+        alternateDomain: getEnvVar('VITE_ROUTING_ALT_DOMAIN'),
+        targetDomain: getEnvVar('VITE_ROUTING_TARGET_DOMAIN')
       },
       socials: [
         { id: 'x', label: 'X', icon: 'XBrand', url: getEnvVar('VITE_SOCIAL_TWITTER_URL') },
@@ -232,42 +230,23 @@ class LandingContentManagerClass extends BaseManager {
         { id: 'instagram', label: 'Instagram', icon: 'Instagram', url: getEnvVar('VITE_SOCIAL_INSTAGRAM_URL') },
         { id: 'youtube', label: 'YouTube', icon: 'Youtube', url: getEnvVar('VITE_SOCIAL_YOUTUBE_URL') },
         { id: 'substack', label: 'Substack', icon: 'Newspaper', url: getEnvVar('VITE_SOCIAL_SUBSTACK_URL') },
-        { id: 'reddit', label: 'Reddit', icon: 'MessageCircle', url: getEnvVar('VITE_SOCIAL_REDDIT_URL') }
+        { id: 'reddit', label: 'Reddit', icon: 'Reddit', url: getEnvVar('VITE_SOCIAL_REDDIT_URL') }
       ],
       siteMeta: {
         siteName: getEnvVar('VITE_SITE_NAME'),
         socialHandle: getEnvVar('VITE_SITE_TWITTER_HANDLE')
-      },
-      copy: {
-        interventions: {
-          accent: 'Solutions',
-          title: 'Featured Pages',
-          subtitle: 'Powerful tools designed for modern research workflows',
-          evidenceLabel: 'Evidence Level',
-          safetyLabel: 'Safety Rating'
-        },
-        contentMap: {
-          accent: 'Landscape',
-          title: 'Map of all longevity interventions',
-          subtitle: 'Explore six domains shaping how interventions evolve from labs to lifestyle'
-        },
-        audience: {
-          title: 'Built for Every Researcher',
-          subtitle: 'Tailored solutions for different research needs and workflows'
-        },
-        methodology: {
-          accent: 'Process',
-          title: 'Our Methodology',
-          subtitle: 'A systematic approach to research excellence'
-        }
       }
     };
+  }
+
+  refreshState(): void {
+    this.state = this.buildState();
+    this.emitChange();
   }
 
   getState(): LandingContentState {
     return this.state;
   }
-
 
   getFeaturedInterventions(): FeaturedIntervention[] {
     return this.state.interventions;
@@ -293,10 +272,6 @@ class LandingContentManagerClass extends BaseManager {
     return this.state.routing;
   }
 
-  getCopy(): SectionCopy {
-    return this.state.copy;
-  }
-
   getSocialLinks(): SocialLink[] {
     return this.state.socials;
   }
@@ -305,6 +280,5 @@ class LandingContentManagerClass extends BaseManager {
     return this.state.siteMeta;
   }
 }
-
 
 export const LandingContentManager = new LandingContentManagerClass();
