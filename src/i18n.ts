@@ -4,6 +4,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 import en from '../locales/en.json';
 import es from '../locales/es.json';
+import { getBooleanEnv } from './managers/env';
 
 export const languages = {
   en: { name: 'English', nativeName: 'English', flag: '🇺🇸' },
@@ -17,8 +18,12 @@ const resources = {
   es: { translation: es }
 } as const;
 
+const enableBrowserLocaleDetection = getBooleanEnv('VITE_I18N_ENABLE_BROWSER_LOCALE_DETECTION');
+
 const detectionOptions = {
-  order: ['localStorage', 'navigator', 'htmlTag'],
+  order: enableBrowserLocaleDetection
+    ? ['localStorage', 'navigator', 'htmlTag']
+    : ['localStorage', 'htmlTag'],
   caches: ['localStorage'],
   lookupLocalStorage: 'flowscribe-language',
   checkWhitelist: true

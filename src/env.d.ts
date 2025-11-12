@@ -79,6 +79,7 @@ interface ImportMetaEnv {
   readonly VITE_PUBLIC_POSTHOG_AUTOCAPTURE: string;
   readonly VITE_PUBLIC_POSTHOG_DEBUG_MODE: string;
   readonly VITE_PUBLIC_POSTHOG_PAGEVIEW_EVENT: string;
+  readonly VITE_I18N_ENABLE_BROWSER_LOCALE_DETECTION: string;
 }
 
 interface ImportMeta {
