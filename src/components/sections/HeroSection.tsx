@@ -227,6 +227,20 @@ export const HeroSection: React.FC = () => {
         </HeroShowcaseCard>
         </div>
       </div>
+
+      <div 
+        className="absolute bottom-[2] left-1/2 -translate-x-1/2 z-20 cursor-pointer"
+        onClick={() => {
+          // Find the next section and scroll to it
+          const heroSection = document.querySelector('.hero-section');
+          if (heroSection && heroSection.nextElementSibling) {
+            heroSection.nextElementSibling.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}
+        aria-label={t('hero.scroll', {}, 'Scroll down')}
+      >
+        <div className="mouse-scroll" aria-hidden />
+      </div>
       
     </section>
   );
