@@ -202,8 +202,9 @@ body::after {
 }
 
 .hero-brand__text {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: 'Baskervville', serif;
+  font-size: 2rem;
+  font-weight: 500;
   letter-spacing: 0.01em;
   color: rgb(var(--color-foreground-rgb));
 }
