@@ -3,6 +3,7 @@ import type { LucideIcon } from 'lucide-react';
 import { FaReddit, FaLinkedin, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { useMemo, forwardRef } from 'react';
 import type { ComponentPropsWithoutRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from '../../i18n';
 
 import { useManagerState } from '../../hooks/useManagerState';
@@ -87,9 +88,19 @@ export const FooterSection: React.FC = () => {
               </div>
             </div>
           </div>
-          <p className="footer-legal">
-            {t('footer.legal', { year: currentYear, name: siteMeta.siteName }, `© ${currentYear} ${siteMeta.siteName}. All rights reserved.`)}
-          </p>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 mt-8 pt-8 border-t border-white/5 w-full">
+            <p className="footer-legal md:text-left">
+              {t('footer.legal', { year: currentYear, name: siteMeta.siteName }, `© ${currentYear} ${siteMeta.siteName}. All rights reserved.`)}
+            </p>
+            <div className="flex gap-6">
+              <Link to="/privacy-policy" className="text-[0.85rem] text-foreground/60 hover:text-foreground transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="/terms-of-service" className="text-[0.85rem] text-foreground/60 hover:text-foreground transition-colors">
+                Terms of Service
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

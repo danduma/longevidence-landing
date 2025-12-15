@@ -1,21 +1,20 @@
-import { HeroSection } from './components/sections/HeroSection';
-import { ContentMapSection } from './components/sections/ContentMapSection';
-import { HowItWorksSection } from './components/sections/HowItWorksSection';
-import { CtaSection } from './components/sections/CtaSection';
-import { FooterSection } from './components/sections/FooterSection';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LandingPage } from './components/pages/LandingPage';
+import { PrivacyPolicyPage } from './components/pages/PrivacyPolicyPage';
+import { TermsOfServicePage } from './components/pages/TermsOfServicePage';
 
 const App: React.FC = () => {
-
   return (
-    <main className="bg-background text-foreground">
-      <HeroSection />
-      <ContentMapSection />
-      <HowItWorksSection />
-      {/* <FeaturedInterventionsSection interventions={interventions} /> */}
-      <CtaSection />
-      <FooterSection />
-      {/* <MethodologySection steps={methodology} /> */}
-    </main>
+    <Router>
+      <main className="bg-background text-foreground">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+        </Routes>
+      </main>
+    </Router>
   );
 };
 
