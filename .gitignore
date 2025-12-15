@@ -29,6 +29,7 @@ pnpm-debug.log*
 .tmp
 .temp
 coverage
+*.tsbuildinfo
 
 # IDE/editor
 .vscode/
